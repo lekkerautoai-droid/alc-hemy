@@ -1,0 +1,849 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Menu — ALC_Hemy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared/styles.css" />
+  <style>
+    /* ============================
+       MENU PAGE STYLES
+    ============================ */
+    .menu-hero-bg {
+      background-image:
+        radial-gradient(ellipse 80% 60% at 50% 100%, rgba(184,115,51,0.22) 0%, transparent 70%),
+        linear-gradient(180deg, rgba(13,10,7,0.75) 0%, rgba(13,10,7,0.55) 50%, rgba(13,10,7,0.92) 100%),
+        url('imgs/hero.jpg');
+      background-size: cover;
+      background-position: center top;
+    }
+
+    /* Tab Filter */
+    .menu-tabs {
+      display: flex; gap: 0; justify-content: center;
+      border-bottom: 1px solid rgba(200, 134, 10, 0.15);
+      margin-bottom: 4rem;
+      flex-wrap: wrap;
+    }
+    .menu-tab {
+      font-family: var(--serif-caps);
+      font-size: 0.58rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--dust);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 1rem 2rem;
+      cursor: none;
+      transition: color 0.3s, border-color 0.3s;
+      margin-bottom: -1px;
+    }
+    .menu-tab:hover { color: var(--parchment-2); }
+    .menu-tab.active {
+      color: var(--amber-2);
+      border-bottom-color: var(--amber);
+    }
+
+    /* Menu Section */
+    .menu-section {
+      padding: 5rem 0;
+      background: var(--ink);
+      display: none;
+    }
+    .menu-section.active { display: block; }
+    .menu-section:not(:last-child) {
+      border-bottom: 1px solid rgba(200,134,10,0.08);
+    }
+
+    /* Menu page wrapper (tabs + sections) */
+    .menu-body {
+      background: var(--ink);
+      padding-top: 0;
+    }
+    .menu-tabs-wrap {
+      background: var(--ink-2);
+      position: sticky;
+      top: 56px;
+      z-index: 100;
+      border-bottom: 1px solid rgba(200, 134, 10, 0.12);
+    }
+
+    /* Cocktail List Item */
+    .menu-item {
+      display: grid;
+      grid-template-columns: 2rem 1fr auto;
+      gap: 1rem 1.5rem;
+      align-items: start;
+      padding: 1.8rem 0;
+      border-bottom: 1px solid rgba(200, 134, 10, 0.07);
+      transition: background 0.3s;
+      position: relative;
+    }
+    .menu-item:last-child { border-bottom: none; }
+    .menu-item::before {
+      content: '';
+      position: absolute; left: -1.5rem; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--amber);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.4s ease;
+    }
+    .menu-item:hover::before { transform: scaleY(1); }
+
+    .item-num {
+      font-family: var(--serif-display);
+      font-size: 0.9rem;
+      color: rgba(200, 134, 10, 0.4);
+      font-weight: 300;
+      padding-top: 0.15rem;
+      text-align: right;
+    }
+    .item-body { }
+    .item-name {
+      font-family: var(--serif-display);
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 0.3rem;
+    }
+    .item-name em { font-style: italic; color: var(--parchment-2); }
+    .item-base {
+      font-family: var(--serif-caps);
+      font-size: 0.52rem;
+      letter-spacing: 0.3em;
+      color: var(--copper);
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .item-desc {
+      font-size: 0.88rem;
+      color: var(--dust);
+      font-style: italic;
+      line-height: 1.6;
+      max-width: 560px;
+    }
+    .item-price {
+      font-family: var(--serif-display);
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--amber-2);
+      white-space: nowrap;
+      padding-top: 0.1rem;
+    }
+
+    /* Section divider within menu */
+    .menu-section-header {
+      margin-bottom: 2rem;
+    }
+    .menu-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem 0 3.5rem;
+    }
+
+    /* Spirits table */
+    .spirits-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem 4rem;
+    }
+    .spirits-category h4 {
+      font-family: var(--serif-caps);
+      font-size: 0.6rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.7rem;
+      border-bottom: 1px solid rgba(200,134,10,0.15);
+    }
+    .spirit-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(200,134,10,0.06);
+    }
+    .spirit-row:last-child { border-bottom: none; }
+    .spirit-name {
+      font-family: var(--serif-body);
+      font-size: 0.95rem;
+      color: var(--parchment-2);
+      font-style: italic;
+    }
+    .spirit-price {
+      font-family: var(--serif-display);
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--amber-2);
+    }
+    .spirit-note {
+      font-family: var(--serif-caps);
+      font-size: 0.5rem;
+      letter-spacing: 0.25em;
+      color: var(--dust);
+      text-transform: uppercase;
+      display: block;
+    }
+
+    /* Menu note / policy */
+    .menu-note {
+      margin-top: 4rem;
+      padding: 2rem;
+      border: 1px solid rgba(200, 134, 10, 0.12);
+      text-align: center;
+      background: rgba(26, 18, 8, 0.4);
+    }
+    .menu-note p {
+      font-family: var(--serif-body);
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--dust);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 700px) {
+      .menu-item { grid-template-columns: 1fr auto; }
+      .item-num { display: none; }
+      .spirits-grid { grid-template-columns: 1fr; }
+      .menu-tab { padding: 0.8rem 1rem; font-size: 0.5rem; }
+      .menu-container { padding: 0 1.25rem 0 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor-dot"><div class="cursor-dot"></div></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">ALC<span>_</span>Hemy</a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">The House</a></li>
+      <li><a href="menu.html" class="active">Menu</a></li>
+      <li><a href="craft.html">Craft</a></li>
+      <li><a href="events.html">Events</a></li>
+    </ul>
+    <a href="reservation.html" class="nav-cta">Reserve a Table</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Nav Overlay -->
+  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <a href="index.html#about" class="mobile-nav-link">The House</a>
+    <div class="mobile-nav-divider"></div>
+    <a href="menu.html"        class="mobile-nav-link">Menu</a>
+    <div class="mobile-nav-divider"></div>
+    <a href="craft.html"       class="mobile-nav-link">Craft</a>
+    <div class="mobile-nav-divider"></div>
+    <a href="events.html"      class="mobile-nav-link">Events</a>
+    <a href="reservation.html" class="mobile-cta mobile-nav-link">Reserve a Table</a>
+  </div>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-bg menu-hero-bg"></div>
+    <!-- Ambient glow -->
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 50% 60%, rgba(200,134,10,0.1) 0%, transparent 65%);pointer-events:none;"></div>
+    <div class="page-hero-content">
+      <p class="page-hero-eyebrow">Est. 2019 &nbsp;&#10022;&nbsp; Handcrafted Spirits &nbsp;&#10022;&nbsp; Liquid Alchemy</p>
+      <h1 class="page-hero-title">The <em>Menu</em></h1>
+      <p class="page-hero-subtitle">Every glass, a transformation.</p>
+    </div>
+  </section>
+
+  <!-- Tab Navigation -->
+  <div class="menu-tabs-wrap">
+    <div style="max-width:1180px;margin:0 auto;padding:0 2rem;">
+      <div class="menu-tabs" role="tablist">
+        <button class="menu-tab active" data-tab="signature" role="tab">Signature</button>
+        <button class="menu-tab" data-tab="classics" role="tab">Classics</button>
+        <button class="menu-tab" data-tab="seasonal" role="tab">Seasonal</button>
+        <button class="menu-tab" data-tab="mocktails" role="tab">Mocktails</button>
+        <button class="menu-tab" data-tab="spirits" role="tab">Spirits &amp; Wine</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================
+       SIGNATURE COCKTAILS
+  ============================ -->
+  <div class="menu-section active" id="tab-signature">
+    <div class="menu-container">
+      <div class="menu-section-header reveal">
+        <p class="section-label">Signature Cocktails</p>
+        <h2 class="section-title">Original <em>Concoctions</em></h2>
+        <p style="color:var(--dust);font-style:italic;margin-top:0.8rem;font-size:0.95rem;">All cocktails are handcrafted with house-made syrups, infusions, and bitters. Please advise of any allergies.</p>
+      </div>
+
+      <div class="divider" style="margin:2.5rem 0;"><span class="divider-icon">&#10022; &#10022; &#10022;</span></div>
+
+      <div class="menu-item reveal">
+        <div class="item-num">01</div>
+        <div class="item-body">
+          <div class="item-name">Ember <em>&amp; Oak</em></div>
+          <div class="item-base">Bourbon &middot; Smoked Maple &middot; Walnut Bitters &middot; Orange Peel</div>
+          <p class="item-desc">Charred oak staves, a veil of cold smoke, and the warmth of barrel-aged bourbon that lingers like an autumn fire. Served over a single hand-cut ice block.</p>
+        </div>
+        <div class="item-price">R175</div>
+      </div>
+
+      <div class="menu-item reveal">
+        <div class="item-num">02</div>
+        <div class="item-body">
+          <div class="item-name">The <em>Herbalist</em></div>
+          <div class="item-base">Rye &middot; House Chartreuse &middot; Wild Thyme &middot; Lemon Verbena</div>
+          <p class="item-desc">An apothecary's dream — garden-fresh herbs press against aged rye, balanced by a house-made green chartreuse and a float of cold-pressed verbena oil.</p>
+        </div>
+        <div class="item-price">R155</div>
+      </div>
+
+      <div class="menu-item reveal">
+        <div class="item-num">03</div>
+        <div class="item-body">
+          <div class="item-name">Copper <em>Solstice</em></div>
+          <div class="item-base">Mezcal &middot; Bitter Orange &middot; Copper Bitters &middot; Sal de Gusano</div>
+          <p class="item-desc">Mezcal's wild smoke meets sun-dried citrus and a hand-poured copper bitters reduction. Finished with a rim of artisan worm salt. Raw. Honest. Unforgettable.</p>
+        </div>
+        <div class="item-price">R145</div>
+      </div>
+
+      <div class="menu-item reveal">
+        <div class="item-num">04</div>
+        <div class="item-body">
+          <div class="item-name">The <em>Transmutation</em></div>
+          <div class="item-base">Aquavit &middot; Caraway Tincture &middot; House Vermouth &middot; Dill Flower</div>
+          <p class="item-desc">Scandinavian spirit meets the old apothecary. Caraway and fennel drift through a pale house vermouth, crowned with a single dill flower preserved in aspic.</p>
+        </div>
+        <div class="item-price">R165</div>
+      </div>
+
+      <div class="menu-item reveal">
+        <div class="item-num">05</div>
+        <div class="item-body">
+          <div class="item-name">Midnight <em>Tincture</em></div>
+          <div class="item-base">Dark Rum &middot; Activated Charcoal &middot; Blackberry &middot; Clove Smoke</div>
+          <p class="item-desc">Black as the witching hour. Aged rum is charcoal-filtered in-house, blended with late-harvest blackberry reduction and smoked over a sprig of clove. Served in a matte black coupe.</p>
+        </div>
+        <div class="item-price">R185</div>
+      </div>
+
+      <div class="menu-item reveal">
+        <div class="item-num">06</div>
+        <div class="item-body">
+          <div class="item-name">The <em>Alembic</em></div>
+          <div class="item-base">Cognac &middot; Saffron Honey &middot; Cardamom &middot; Rose Water</div>
+          <p class="item-desc">Named for the distillation vessel of the ancients. Aged cognac, elevated by a golden saffron honey reduction and a whisper of cardamom, finished with a mist of rose water.</p>
+        </div>
+        <div class="item-price">R215</div>
+      </div>
+
+      <div class="menu-item reveal">
+        <div class="item-num">07</div>
+        <div class="item-body">
+          <div class="item-name">Golden <em>Ratio</em></div>
+          <div class="item-base">Calvados &middot; Turmeric Honey &middot; Lemon &middot; Ginger Beer</div>
+          <p class="item-desc">The mathematics of pleasure. Apple brandy carries turmeric-infused honey into a long finish of preserved lemon and ginger beer. A formula we return to each season.</p>
+        </div>
+        <div class="item-price">R145</div>
+      </div>
+
+      <div class="menu-item reveal">
+        <div class="item-num">08</div>
+        <div class="item-body">
+          <div class="item-name">The Forager's <em>Dram</em></div>
+          <div class="item-base">Scotch &middot; Elderflower &middot; Heather Honey &middot; Pine Needle</div>
+          <p class="item-desc">Walk the Scottish moor without leaving your seat. Highland malt carries elderflower and heather honey to a finish as clean and wild as rain on bracken.</p>
+        </div>
+        <div class="item-price">R205</div>
+      </div>
+
+      <div class="menu-note">
+        <p>All signature cocktails are composed by our lead alchemist and change with the seasons. &nbsp;&#10022;&nbsp; Please inform your server of any dietary requirements or allergies. &nbsp;&#10022;&nbsp; Minimum age 18.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================
+       CLASSICS
+  ============================ -->
+  <div class="menu-section" id="tab-classics">
+    <div class="menu-container">
+      <div class="menu-section-header reveal">
+        <p class="section-label">The Classics</p>
+        <h2 class="section-title">Timeless <em>Foundations</em></h2>
+        <p style="color:var(--dust);font-style:italic;margin-top:0.8rem;font-size:0.95rem;">The great cocktails, rendered with our materials. Unchanged in form, elevated in spirit.</p>
+      </div>
+      <div class="divider" style="margin:2.5rem 0;"><span class="divider-icon">&#10022; &#10022; &#10022;</span></div>
+
+      <div class="menu-item reveal">
+        <div class="item-num">01</div>
+        <div class="item-body">
+          <div class="item-name">Old <em>Fashioned</em></div>
+          <div class="item-base">Buffalo Trace Bourbon &middot; Demerara &middot; Angostura &middot; Orange</div>
+          <p class="item-desc">The original cocktail. Made as it was meant — stirred long, cold, and with reverence for what the barrel already knows.</p>
+        </div>
+        <div class="item-price">R155</div>
+      </div>
+
+      <div class="menu-item reveal">
+        <div class="item-num">02</div>
+        <div class="item-body">
+          <div class="item-name">The <em>Negroni</em></div>
+          <div class="item-base">Tanqueray Gin &middot; Campari &middot; Sweet Vermouth &middot; Flamed Orange</div>
+          <p class="item-desc">Bitter, botanical, beautiful. We flame the orange peel tableside and stir until the glass frosts at the rim.</p>
+        </div>
+        <div class="item-price">R135</div>
+      </div>
+
+      <div class="menu-item reveal">
+        <div class="item-num">03</div>
+        <div class="item-body">
+          <div class="item-name">Sazerac</div>
+          <div class="item-base">Rye Whiskey &middot; Peychaud's Bitters &middot; Absinthe Rinse &middot; Lemon</div>
+          <p class="item-desc">New Orleans' gift to the world. The absinthe rinse is not a suggestion — it is the ghost that makes the drink haunted.</p>
+        </div>
+        <div class="item-price">R155</div>
+      </div>
+
+      <div class="menu-item reveal">
+        <div class="item-num">04</div>
+        <div class="item-body">
+          <div class="item-name">Last <em>Word</em></div>
+          <div class="item-base">Gin &middot; Green Chartreuse &middot; Maraschino &middot; Fresh Lime</div>
+          <p class="item-desc">Equal parts. Perfect balance. The Last Word says everything that needs to be said — with the quiet confidence of something truly equal.</p>
+        </div>
+        <div class="item-price">R145</div>
+      </div>
+
+      <div class="menu-item reveal">
+        <div class="item-num">05</div>
+        <div class="item-body">
+          <div class="item-name">Paper <em>Plane</em></div>
+          <div class="item-base">Bourbon &middot; Aperol &middot; Amaro Nonino &middot; Lemon Juice</div>
+          <p class="item-desc">Folded from equal quarters. Bright, bracing, bitter in all the right places. A modern classic that earns its seat at the timeless table.</p>
+        </div>
+        <div class="item-price">R145</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================
+       SEASONAL
+  ============================ -->
+  <div class="menu-section" id="tab-seasonal">
+    <div class="menu-container">
+      <div class="menu-section-header reveal">
+        <p class="section-label">Seasonal Selection</p>
+        <h2 class="section-title">Spring <em>2026</em></h2>
+        <p style="color:var(--dust);font-style:italic;margin-top:0.8rem;font-size:0.95rem;">Our seasonal menu changes with the harvest. These expressions are available through May 2026.</p>
+      </div>
+      <div class="divider" style="margin:2.5rem 0;"><span class="divider-icon">&#10022; &#10022; &#10022;</span></div>
+
+      <div class="menu-item reveal">
+        <div class="item-num">01</div>
+        <div class="item-body">
+          <div class="item-name">Autumnal <em>Elixir</em></div>
+          <div class="item-base">Armagnac &middot; Fig Leaf &middot; Burnt Caramel &middot; Mace</div>
+          <p class="item-desc">End-of-season figs slow-cooked into a syrup that carries the memory of summer. Armagnac adds leather and time. Mace adds the feeling of a warm kitchen at dusk.</p>
+        </div>
+        <div class="item-price">R175</div>
+      </div>
+
+      <div class="menu-item reveal">
+        <div class="item-num">02</div>
+        <div class="item-body">
+          <div class="item-name">The Distiller's <em>Wife</em></div>
+          <div class="item-base">Pear Eau de Vie &middot; White Tea &middot; Yuzu &middot; Champagne Float</div>
+          <p class="item-desc">Delicate as the first frost. Pear eau de vie is steeped overnight in white tea, brightened with yuzu, and finished with a float of Champagne. Fragrant, precise, quietly devastating.</p>
+        </div>
+        <div class="item-price">R195</div>
+      </div>
+
+      <div class="menu-item reveal">
+        <div class="item-num">03</div>
+        <div class="item-body">
+          <div class="item-name">Blossom <em>&amp; Bone</em></div>
+          <div class="item-base">Mezcal &middot; Cherry Blossom Syrup &middot; Fennel Pollen &middot; Salt</div>
+          <p class="item-desc">Spring's fleeting beauty expressed in a glass. Smoky mezcal meets a cherry blossom syrup made from fresh petals gathered each March. Fennel pollen and finishing salt.</p>
+        </div>
+        <div class="item-price">R165</div>
+      </div>
+
+      <div class="menu-item reveal">
+        <div class="item-num">04</div>
+        <div class="item-body">
+          <div class="item-name">The Cartographer's <em>Gin</em></div>
+          <div class="item-base">Sloe Gin &middot; Elderflower Cordial &middot; Cucumber &middot; Tonic</div>
+          <p class="item-desc">Maps old roads through English hedgerows. Sloe gin deepened with elder, laid over cucumber ribbons, and lengthened with house-made tonic water charged in-house.</p>
+        </div>
+        <div class="item-price">R135</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================
+       MOCKTAILS
+  ============================ -->
+  <div class="menu-section" id="tab-mocktails">
+    <div class="menu-container">
+      <div class="menu-section-header reveal">
+        <p class="section-label">Zero Proof</p>
+        <h2 class="section-title">The <em>Temperance</em> Menu</h2>
+        <p style="color:var(--dust);font-style:italic;margin-top:0.8rem;font-size:0.95rem;">Every complexity of a cocktail, without the alcohol. These are full compositions — not afterthoughts.</p>
+      </div>
+      <div class="divider" style="margin:2.5rem 0;"><span class="divider-icon">&#10022; &#10022; &#10022;</span></div>
+
+      <div class="menu-item reveal">
+        <div class="item-num">01</div>
+        <div class="item-body">
+          <div class="item-name">The <em>Botanist's Garden</em></div>
+          <div class="item-base">Cold-Brew Chamomile &middot; Apricot &middot; Turmeric &middot; Ginger Shrub</div>
+          <p class="item-desc">A garden in a glass. Cold-brewed chamomile forms the base; apricot and turmeric carry warmth. The ginger shrub provides a long, honest finish.</p>
+        </div>
+        <div class="item-price">R95</div>
+      </div>
+
+      <div class="menu-item reveal">
+        <div class="item-num">02</div>
+        <div class="item-body">
+          <div class="item-name">Smoke <em>&amp; Honey</em></div>
+          <div class="item-base">Smoked Lapsang Tea &middot; Raw Honey &middot; Lemon &middot; Soda</div>
+          <p class="item-desc">Lapsang souchong is cold-smoked and steeped, sweetened only with raw wildflower honey. Lemon and soda lift it into something that tastes improbably like summer campfire.</p>
+        </div>
+        <div class="item-price">R95</div>
+      </div>
+
+      <div class="menu-item reveal">
+        <div class="item-num">03</div>
+        <div class="item-body">
+          <div class="item-name">The <em>Wanderer</em></div>
+          <div class="item-base">Seedlip Spice &middot; Cardamom Soda &middot; Blood Orange &middot; Rosemary</div>
+          <p class="item-desc">Built for those who want to go somewhere without the fog. Seedlip's botanical complexity, deepened with cardamom, blood orange, and a rosemary smoke garnish.</p>
+        </div>
+        <div class="item-price">R115</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================
+       SPIRITS & WINE
+  ============================ -->
+  <div class="menu-section" id="tab-spirits">
+    <div class="menu-container">
+      <div class="menu-section-header reveal">
+        <p class="section-label">The Cellar</p>
+        <h2 class="section-title">Spirits <em>&amp; Wine</em></h2>
+        <p style="color:var(--dust);font-style:italic;margin-top:0.8rem;font-size:0.95rem;">Served neat, on the rocks, or with a single accompaniment. Our cellar holds over 120 curated expressions.</p>
+      </div>
+      <div class="divider" style="margin:2.5rem 0;"><span class="divider-icon">&#10022; &#10022; &#10022;</span></div>
+
+      <div class="spirits-grid reveal">
+        <div class="spirits-category">
+          <h4>Scotch Whisky</h4>
+          <div class="spirit-row">
+            <div>
+              <span class="spirit-name">Glenfarclas 12 Year</span>
+              <span class="spirit-note">Speyside · Sherry Cask</span>
+            </div>
+            <span class="spirit-price">R135</span>
+          </div>
+          <div class="spirit-row">
+            <div>
+              <span class="spirit-name">Laphroaig 10 Year</span>
+              <span class="spirit-note">Islay · Heavily Peated</span>
+            </div>
+            <span class="spirit-price">R155</span>
+          </div>
+          <div class="spirit-row">
+            <div>
+              <span class="spirit-name">GlenDronach 18 Year</span>
+              <span class="spirit-note">Highland · PX Sherry</span>
+            </div>
+            <span class="spirit-price">R275</span>
+          </div>
+          <div class="spirit-row">
+            <div>
+              <span class="spirit-name">Ardbeg An Oa</span>
+              <span class="spirit-note">Islay · Complex Peat</span>
+            </div>
+            <span class="spirit-price">R175</span>
+          </div>
+        </div>
+
+        <div class="spirits-category">
+          <h4>Bourbon &amp; Rye</h4>
+          <div class="spirit-row">
+            <div>
+              <span class="spirit-name">Elijah Craig Small Batch</span>
+              <span class="spirit-note">Kentucky · 12 Year</span>
+            </div>
+            <span class="spirit-price">R135</span>
+          </div>
+          <div class="spirit-row">
+            <div>
+              <span class="spirit-name">Michter's Rye</span>
+              <span class="spirit-note">USA · Unblended</span>
+            </div>
+            <span class="spirit-price">R145</span>
+          </div>
+          <div class="spirit-row">
+            <div>
+              <span class="spirit-name">Blanton's Single Barrel</span>
+              <span class="spirit-note">Buffalo Trace Distillery</span>
+            </div>
+            <span class="spirit-price">R215</span>
+          </div>
+          <div class="spirit-row">
+            <div>
+              <span class="spirit-name">Pappy Van Winkle 15 Year</span>
+              <span class="spirit-note">Available on enquiry</span>
+            </div>
+            <span class="spirit-price">POA</span>
+          </div>
+        </div>
+
+        <div class="spirits-category">
+          <h4>Mezcal &amp; Tequila</h4>
+          <div class="spirit-row">
+            <div>
+              <span class="spirit-name">Ilegal Joven Mezcal</span>
+              <span class="spirit-note">Oaxaca · Espadín</span>
+            </div>
+            <span class="spirit-price">R125</span>
+          </div>
+          <div class="spirit-row">
+            <div>
+              <span class="spirit-name">Del Maguey Vida</span>
+              <span class="spirit-note">San Luis del Río</span>
+            </div>
+            <span class="spirit-price">R175</span>
+          </div>
+          <div class="spirit-row">
+            <div>
+              <span class="spirit-name">Fortaleza Añejo</span>
+              <span class="spirit-note">Jalisco · Aged 18mo</span>
+            </div>
+            <span class="spirit-price">R195</span>
+          </div>
+        </div>
+
+        <div class="spirits-category">
+          <h4>Wine by the Glass</h4>
+          <div class="spirit-row">
+            <div>
+              <span class="spirit-name">Muscadet Sèvre et Maine</span>
+              <span class="spirit-note">Loire Valley · Crisp &amp; Mineral</span>
+            </div>
+            <span class="spirit-price">R115</span>
+          </div>
+          <div class="spirit-row">
+            <div>
+              <span class="spirit-name">Côtes du Rhône Rouge</span>
+              <span class="spirit-note">Southern Rhône · GSM Blend</span>
+            </div>
+            <span class="spirit-price">R125</span>
+          </div>
+          <div class="spirit-row">
+            <div>
+              <span class="spirit-name">Pét-Nat Orange Wine</span>
+              <span class="spirit-note">Jura · Skin Contact</span>
+            </div>
+            <span class="spirit-price">R135</span>
+          </div>
+          <div class="spirit-row">
+            <div>
+              <span class="spirit-name">Champagne Billecart-Salmon</span>
+              <span class="spirit-note">Brut NV · Mareuil-sur-Aÿ</span>
+            </div>
+            <span class="spirit-price">R175</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-note" style="margin-top:3rem;">
+        <p>Our spirits list extends to over 120 expressions. Ask your server for the full cellar list. &nbsp;&#10022;&nbsp; Bottle service and private tastings available with advance notice.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Marquee -->
+  <div class="marquee-strip" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Handcrafted Bitters</span><span class="dot">&#10022;</span>
+      <span>Barrel-Aged Spirits</span><span class="dot">&#10022;</span>
+      <span>Seasonal Botanicals</span><span class="dot">&#10022;</span>
+      <span>House-Made Syrups</span><span class="dot">&#10022;</span>
+      <span>Cold-Pressed Citrus</span><span class="dot">&#10022;</span>
+      <span>Fire &amp; Ice</span><span class="dot">&#10022;</span>
+      <span>Rare Vintage Pours</span><span class="dot">&#10022;</span>
+      <span>Smoke &amp; Copper</span><span class="dot">&#10022;</span>
+      <span>Handcrafted Bitters</span><span class="dot">&#10022;</span>
+      <span>Barrel-Aged Spirits</span><span class="dot">&#10022;</span>
+      <span>Seasonal Botanicals</span><span class="dot">&#10022;</span>
+      <span>House-Made Syrups</span><span class="dot">&#10022;</span>
+      <span>Cold-Pressed Citrus</span><span class="dot">&#10022;</span>
+      <span>Fire &amp; Ice</span><span class="dot">&#10022;</span>
+      <span>Rare Vintage Pours</span><span class="dot">&#10022;</span>
+      <span>Smoke &amp; Copper</span><span class="dot">&#10022;</span>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="container reveal" style="position:relative;z-index:1;">
+      <p class="section-label">Experience It</p>
+      <h2 class="section-title">Your table <em>awaits.</em></h2>
+      <p>We keep it small, unhurried, and deliberate. The way all good things should be.</p>
+      <div class="cta-actions">
+        <a href="reservation.html" class="btn-primary">Reserve a Table</a>
+        <a href="reservation.html#private" class="btn-ghost">Private Hire</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section id="newsletter">
+    <div class="container">
+      <div class="newsletter-text">
+        <p class="section-label">Stay in the Lab</p>
+        <h3>Seasonal menus, events &amp;<br>the odd arcane recipe.</h3>
+      </div>
+      <form class="newsletter-form" onsubmit="return false;">
+        <input type="email" placeholder="your@email.com" aria-label="Email address" />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">ALC<span>_</span>Hemy</a>
+          <p>The art of liquid alchemy, practised in a converted barn at the edge of things worth tasting.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="menu.html">The Menu</a></li>
+            <li><a href="menu.html#tab-seasonal">Seasonal Specials</a></li>
+            <li><a href="menu.html#tab-spirits">House Spirits</a></li>
+            <li><a href="menu.html#tab-mocktails">Wine &amp; Soda</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Visit</h4>
+          <ul>
+            <li><a href="reservation.html">Find Us</a></li>
+            <li><a href="reservation.html">Reservations</a></li>
+            <li><a href="reservation.html#private">Private Events</a></li>
+            <li><a href="reservation.html">Gift Cards</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>The Lab</h4>
+          <ul>
+            <li><a href="index.html#about">Our Story</a></li>
+            <li><a href="craft.html">The Craft</a></li>
+            <li><a href="events.html">Classes</a></li>
+            <li><a href="#">Press</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 ALC_Hemy &nbsp;&middot;&nbsp; All Rights Reserved</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/nickruger732/" target="_blank" rel="noopener">Instagram</a>
+          
+          <a href="#">TikTok</a>
+        </div>
+        <p>Drink Responsibly &nbsp;&middot;&nbsp; 18+</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // --- Custom cursor ---
+    const dot  = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.transform = `translate(${mx}px, ${my}px)`;
+    });
+    function lerpCursor() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
+      requestAnimationFrame(lerpCursor);
+    }
+    lerpCursor();
+    document.querySelectorAll('a, button, input').forEach(el => {
+      el.addEventListener('mouseenter', () => { ring.style.width='56px'; ring.style.height='56px'; ring.style.opacity='0.9'; });
+      el.addEventListener('mouseleave', () => { ring.style.width='36px'; ring.style.height='36px'; ring.style.opacity='0.6'; });
+    });
+
+    // --- Navbar scroll ---
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // --- Scroll reveal ---
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const siblings = [...entry.target.parentElement.querySelectorAll('.reveal')];
+          const idx = siblings.indexOf(entry.target);
+          setTimeout(() => entry.target.classList.add('visible'), idx * 80);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    reveals.forEach(el => io.observe(el));
+
+    // --- Hamburger ---
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    function toggleMenu(open) {
+      hamburger.classList.toggle('open', open);
+      mobileNav.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+      mobileNav.setAttribute('aria-hidden', !open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    hamburger.addEventListener('click', () => toggleMenu(!mobileNav.classList.contains('open')));
+    document.querySelectorAll('.mobile-nav-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleMenu(false); });
+
+    // --- Menu tabs ---
+    const tabs = document.querySelectorAll('.menu-tab');
+    const sections = document.querySelectorAll('.menu-section');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        sections.forEach(s => s.classList.remove('active'));
+        tab.classList.add('active');
+        const target = document.getElementById('tab-' + tab.dataset.tab);
+        if (target) target.classList.add('active');
+        // Re-trigger reveals in new section
+        target.querySelectorAll('.reveal').forEach(el => {
+          el.classList.remove('visible');
+          io.observe(el);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,437 @@
+1167:     <div class="marquee-track">
+1168:       <span>Handcrafted Bitters</span><span class="dot">✦</span>
+1169:       <span>Barrel-Aged Spirits</span><span class="dot">✦</span>
+1170:       <span>Seasonal Botanicals</span><span class="dot">✦</span>
+1171:       <span>House-Made Syrups</span><span class="dot">✦</span>
+1172:       <span>Cold-Pressed Citrus</span><span class="dot">✦</span>
+1173:       <span>Fire &amp; Ice</span><span class="dot">✦</span>
+1174:       <span>Rare Vintage Pours</span><span class="dot">✦</span>
+1175:       <span>Smoke &amp; Copper</span><span class="dot">✦</span>
+1176:       <!-- Duplicate for seamless loop -->
+1177:       <span>Handcrafted Bitters</span><span class="dot">✦</span>
+1178:       <span>Barrel-Aged Spirits</span><span class="dot">✦</span>
+1179:       <span>Seasonal Botanicals</span><span class="dot">✦</span>
+1180:       <span>House-Made Syrups</span><span class="dot">✦</span>
+1181:       <span>Cold-Pressed Citrus</span><span class="dot">✦</span>
+1182:       <span>Fire &amp; Ice</span><span class="dot">✦</span>
+1183:       <span>Rare Vintage Pours</span><span class="dot">✦</span>
+1184:       <span>Smoke &amp; Copper</span><span class="dot">✦</span>
+1185:     </div>
+1186:   </div>
+1187: 
+1188:   <!-- ============================
+1189:        ABOUT
+1190:   ============================ -->
+1191:   <section id="about">
+1192:     <div class="container">
+1193:       <div class="about-grid">
+1194: 
+1195:         <div class="about-visual reveal">
+1196:           <div class="about-frame" style="padding:0; overflow:hidden;">
+1197: [BASE64 LINE len=153886]
+1198:           </div>
+1199:           <div class="about-badge">
+1200:             <strong>06</strong>
+1201:             Years of<br>Craft
+1202:           </div>
+1203:         </div>
+1204: 
+1205:         <div class="about-text reveal">
+1206:           <p class="section-label">The House</p>
+1207:           <h2 class="section-title">
+1208:             Born of <em>fire,</em><br>copper &amp; <em>patience.</em>
+1209:           </h2>
+1210:           <div class="divider"><span class="divider-icon">✦ ✦ ✦</span></div>
+1211:           <p>
+1212:             ALC_Hemy began in a converted barn, surrounded by mason jars, foraged botanicals, and the stubborn belief that the finest drinks are those that carry a story in every sip.
+1213:           </p>
+1214:           <p>
+1215:             We are mixologists, foragers, and obsessives. We age, ferment, smoke, and press — because shortcuts have no place in alchemy.
+1216:           </p>
+1217:           <div class="about-stats">
+1218:             <div>
+1219:               <div class="stat-num">48+</div>
+1220:               <div class="stat-label">House Cocktails</div>
+1221:             </div>
+1222:             <div>
+1223:               <div class="stat-num">120</div>
+1224:               <div class="stat-label">Curated Spirits</div>
+1225:             </div>
+1226:             <div>
+1227:               <div class="stat-num">12</div>
+1228:               <div class="stat-label">Seasonal Menus</div>
+1229:             </div>
+1230:           </div>
+1231:         </div>
+1232: 
+1233:       </div>
+1234:     </div>
+1235:   </section>
+1236: 
+1237:   <!-- ============================
+1238:        COCKTAILS
+1239:   ============================ -->
+1240:   <section id="cocktails">
+1241:     <div class="container">
+1242:       <div class="cocktails-header reveal">
+1243:         <p class="section-label">The Menu</p>
+1244:         <h2 class="section-title">Signature <em>Concoctions</em></h2>
+1245:       </div>
+1246:     </div>
+1247: 
+1248:     <div class="cocktails-grid">
+1249: 
+1250:       <!-- Card 1 -->
+1251:       <div class="cocktail-card reveal">
+1252: [BASE64 LINE len=150585]
+1253:         </div>
+1254:         <div class="cocktail-card-overlay"></div>
+1255:         <div class="cocktail-price">$18</div>
+1256:         <div class="cocktail-card-content">
+1257:           <div class="cocktail-num">No. 01</div>
+1258:           <div class="cocktail-name">Ember <em>&amp; Oak</em></div>
+1259:           <div class="cocktail-base">Bourbon · Smoked Maple · Walnut Bitters</div>
+1260:           <p class="cocktail-desc">Charred oak staves, a veil of cold smoke, and the warmth of barrel-aged bourbon that lingers like an autumn fire.</p>
+1261:         </div>
+1262:       </div>
+1263: 
+1264:       <!-- Card 2 -->
+1265:       <div class="cocktail-card reveal">
+1266: [BASE64 LINE len=51347]
+1267:         </div>
+1268:         <div class="cocktail-card-overlay"></div>
+1269:         <div class="cocktail-price">$16</div>
+1270:         <div class="cocktail-card-content">
+1271:           <div class="cocktail-num">No. 02</div>
+1272:           <div class="cocktail-name">The <em>Herbalist</em></div>
+1273:           <div class="cocktail-base">Rye · House Chartreuse · Wild Thyme</div>
+1274:           <p class="cocktail-desc">An apothecary's dream — garden-fresh herbs press against aged rye, balanced by a house-made green chartreuse.</p>
+1275:         </div>
+1276:       </div>
+1277: 
+1278:       <!-- Card 3 -->
+1279:       <div class="cocktail-card reveal">
+1280: [BASE64 LINE len=112751]
+1281:         </div>
+1282:         <div class="cocktail-card-overlay"></div>
+1283:         <div class="cocktail-price">$15</div>
+1284:         <div class="cocktail-card-content">
+1285:           <div class="cocktail-num">No. 03</div>
+1286:           <div class="cocktail-name">Copper <em>Solstice</em></div>
+1287:           <div class="cocktail-base">Mezcal · Bitter Orange · Copper Bitters</div>
+1288:           <p class="cocktail-desc">Mezcal's wild smoke meets sun-dried citrus and a hand-poured copper bitters reduction. Raw. Honest. Unforgettable.</p>
+1289:         </div>
+1290:       </div>
+1291: 
+1292:     </div>
+1293: 
+1294:     <div class="cocktails-cta reveal">
+1295:       <a href="#" class="btn-ghost">View Full Menu</a>
+1296:     </div>
+1297:   </section>
+1298: 
+1299:   <!-- ============================
+1300:        QUOTE
+1301:   ============================ -->
+1302:   <section id="quote">
+1303:     <div class="container">
+1304:       <div class="reveal" style="text-align:center;">
+1305:         <span class="quote-mark">"</span>
+1306:         <blockquote>
+1307:           In alchemy, the greatest transformation is not of <em>metals,</em> but of intention — that which you pour into the glass.
+1308:         </blockquote>
+1309:         <div class="divider" style="max-width:300px; margin:1.5rem auto;"><span class="divider-icon">✦</span></div>
+1310:         <cite>— The ALC_Hemy Codex</cite>
+1311:       </div>
+1312:     </div>
+1313:   </section>
+1314: 
+1315:   <!-- ============================
+1316:        PROCESS
+1317:   ============================ -->
+1318:   <section id="process">
+1319:     <div class="container">
+1320:       <div class="process-header reveal" style="text-align:center;">
+1321:         <p class="section-label">The Craft</p>
+1322:         <h2 class="section-title">How we <em>transmute</em></h2>
+1323:       </div>
+1324:       <div class="process-steps">
+1325: 
+1326:         <div class="process-step reveal">
+1327:           <div class="step-number">I</div>
+1328:           <div class="step-title">Forage</div>
+1329:           <p class="step-desc">Every season, we gather wild botanicals, bark, and root. The land provides what no catalogue can replicate.</p>
+1330:         </div>
+1331: 
+1332:         <div class="process-step reveal">
+1333:           <div class="step-number">II</div>
+1334:           <div class="step-title">Ferment</div>
+1335:           <p class="step-desc">Slow, cold ferments in open crocks. Patience is the first ingredient. Time is the most expensive spirit on our shelf.</p>
+1336:         </div>
+1337: 
+1338:         <div class="process-step reveal">
+1339:           <div class="step-number">III</div>
+1340:           <div class="step-title">Distil</div>
+1341:           <p class="step-desc">Our copper pot still has a name. She runs slow and deliberate, extracting only the heart — never the head or tail.</p>
+1342:         </div>
+1343: 
+1344:         <div class="process-step reveal">
+1345:           <div class="step-number">IV</div>
+1346:           <div class="step-title">Compose</div>
+1347:           <p class="step-desc">The final act: balance, tension, and harmony. A cocktail is a sentence. Every element earns its place or leaves.</p>
+1348:         </div>
+1349: 
+1350:       </div>
+1351:     </div>
+1352:   </section>
+1353: 
+1354:   <!-- ============================
+1355:        EVENTS
+1356:   ============================ -->
+1357:   <section id="events">
+1358:     <div class="container">
+1359:       <div class="reveal">
+1360:         <p class="section-label">Upcoming</p>
+1361:         <h2 class="section-title">Classes &amp; <em>Events</em></h2>
+1362:       </div>
+1363:       <div class="events-grid">
+1364: 
+1365:         <div class="event-card reveal">
+1366:           <div class="event-date">Saturday · April 12, 2026 · 18:00</div>
+1367:           <div class="event-title">The <em>Bitters Lab</em></div>
+1368:           <p class="event-desc">Spend an evening with our lead mixologist crafting your own house bitters from scratch — gentian root, citrus peel, and secrets only the lab holds.</p>
+1369:           <a href="#" class="event-link">Reserve a Seat</a>
+1370:         </div>
+1371: 
+1372:         <div class="event-card reveal">
+1373:           <div class="event-date">Friday · April 25, 2026 · 19:00</div>
+1374:           <div class="event-title">Smoke &amp; <em>Single Malt</em></div>
+1375:           <p class="event-desc">A curated tasting of five rare peated single malts, paired with our hand-rolled smoked cocktail accompaniments. Limited to 16 guests.</p>
+1376:           <a href="#" class="event-link">Reserve a Seat</a>
+1377:         </div>
+1378: 
+1379:         <div class="event-card reveal">
+1380:           <div class="event-date">Monthly · Every Last Sunday · 14:00</div>
+1381:           <div class="event-title">Forager's <em>Table</em></div>
+1382:           <p class="event-desc">An open-workshop where we explore seasonal forage and translate wild-harvested ingredients into experimental cocktails. Bring your curiosity.</p>
+1383:           <a href="#" class="event-link">Join the List</a>
+1384:         </div>
+1385: 
+1386:         <div class="event-card reveal">
+1387:           <div class="event-date">Private · Year-Round · By Appointment</div>
+1388:           <div class="event-title">The <em>Alchemist's</em> Table</div>
+1389:           <p class="event-desc">A fully bespoke, intimate tasting menu for up to eight guests. We design around your palate. A four-hour ceremony of cocktail and conversation.</p>
+1390:           <a href="#" class="event-link">Enquire</a>
+1391:         </div>
+1392: 
+1393:       </div>
+1394:     </div>
+1395:   </section>
+1396: 
+1397:   <!-- ============================
+1398:        CTA
+1399:   ============================ -->
+1400:   <section id="cta">
+1401:     <div class="container reveal" style="position:relative;z-index:1;">
+1402:       <p class="section-label">Experience It</p>
+1403:       <h2 class="section-title">Your table <em>awaits.</em></h2>
+1404:       <p>We keep it small, unhurried, and deliberate. The way all good things should be.</p>
+1405:       <div class="cta-actions">
+1406:         <a href="#" class="btn-primary">Reserve a Table</a>
+1407:         <a href="#" class="btn-ghost">Private Hire</a>
+1408:       </div>
+1409:     </div>
+1410:   </section>
+1411: 
+1412:   <!-- ============================
+1413:        NEWSLETTER
+1414:   ============================ -->
+1415:   <section id="newsletter">
+1416:     <div class="container">
+1417:       <div class="newsletter-text">
+1418:         <p class="section-label">Stay in the Lab</p>
+1419:         <h3>Seasonal menus, events &amp;<br>the odd arcane recipe.</h3>
+1420:       </div>
+1421:       <form class="newsletter-form" onsubmit="return false;">
+1422:         <input type="email" placeholder="your@email.com" aria-label="Email address" />
+1423:         <button type="submit">Subscribe</button>
+1424:       </form>
+1425:     </div>
+1426:   </section>
+1427: 
+1428:   <!-- ============================
+1429:        FOOTER
+1430:   ============================ -->
+1431:   <footer>
+1432:     <div class="container">
+1433:       <div class="footer-grid">
+1434: 
+1435:         <div class="footer-brand">
+1436:           <a href="#" class="nav-logo">ALC<span>_</span>Hemy</a>
+1437:           <p>The art of liquid alchemy, practised in a converted barn at the edge of things worth tasting.</p>
+1438:         </div>
+1439: 
+1440:         <div class="footer-col">
+1441:           <h4>Explore</h4>
+1442:           <ul>
+1443:             <li><a href="#">The Menu</a></li>
+1444:             <li><a href="#">Seasonal Specials</a></li>
+1445:             <li><a href="#">House Spirits</a></li>
+1446:             <li><a href="#">Wine &amp; Soda</a></li>
+1447:           </ul>
+1448:         </div>
+1449: 
+1450:         <div class="footer-col">
+1451:           <h4>Visit</h4>
+1452:           <ul>
+1453:             <li><a href="#">Find Us</a></li>
+1454:             <li><a href="#">Reservations</a></li>
+1455:             <li><a href="#">Private Events</a></li>
+1456:             <li><a href="#">Gift Cards</a></li>
+1457:           </ul>
+1458:         </div>
+1459: 
+1460:         <div class="footer-col">
+1461:           <h4>The Lab</h4>
+1462:           <ul>
+1463:             <li><a href="#">Our Story</a></li>
+1464:             <li><a href="#">The Craft</a></li>
+1465:             <li><a href="#">Classes</a></li>
+1466:             <li><a href="#">Press</a></li>
+1467:           </ul>
+1468:         </div>
+1469: 
+1470:       </div>
+1471: 
+1472:       <div class="footer-bottom">
+1473:         <p>© 2026 ALC_Hemy &nbsp;·&nbsp; All Rights Reserved</p>
+1474:         <div class="footer-social">
+1475:           <a href="#">Instagram</a>
+1476:           <a href="#">Facebook</a>
+1477:           <a href="#">TikTok</a>
+1478:         </div>
+1479:         <p>Drink Responsibly &nbsp;·&nbsp; 18+</p>
+1480:       </div>
+1481:     </div>
+1482:   </footer>
+1483: 
+1484:   <!-- ============================
+1485:        SCRIPTS
+1486:   ============================ -->
+1487:   <script>
+1488:     // --- Custom cursor ---
+1489:     const dot  = document.getElementById('cursor-dot');
+1490:     const ring = document.getElementById('cursor-ring');
+1491:     let mx = 0, my = 0, rx = 0, ry = 0;
+1492: 
+1493:     document.addEventListener('mousemove', e => {
+1494:       mx = e.clientX; my = e.clientY;
+1495:       dot.style.transform = `translate(${mx}px, ${my}px)`;
+1496:     });
+1497: 
+1498:     function lerpCursor() {
+1499:       rx += (mx - rx) * 0.12;
+1500:       ry += (my - ry) * 0.12;
+1501:       ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
+1502:       requestAnimationFrame(lerpCursor);
+1503:     }
+1504:     lerpCursor();
+1505: 
+1506:     document.querySelectorAll('a, button, input').forEach(el => {
+1507:       el.addEventListener('mouseenter', () => {
+1508:         ring.style.width  = '56px';
+1509:         ring.style.height = '56px';
+1510:         ring.style.opacity = '0.9';
+1511:       });
+1512:       el.addEventListener('mouseleave', () => {
+1513:         ring.style.width  = '36px';
+1514:         ring.style.height = '36px';
+1515:         ring.style.opacity = '0.6';
+1516:       });
+1517:     });
+1518: 
+1519:     // --- Navbar scroll ---
+1520:     const navbar = document.getElementById('navbar');
+1521:     window.addEventListener('scroll', () => {
+1522:       navbar.classList.toggle('scrolled', window.scrollY > 60);
+1523:     });
+1524: 
+1525:     // --- Scroll reveal ---
+1526:     const reveals = document.querySelectorAll('.reveal');
+1527:     const io = new IntersectionObserver((entries) => {
+1528:       entries.forEach((entry, i) => {
+1529:         if (entry.isIntersecting) {
+1530:           // Stagger siblings
+1531:           const siblings = [...entry.target.parentElement.querySelectorAll('.reveal')];
+1532:           const idx = siblings.indexOf(entry.target);
+1533:           setTimeout(() => {
+1534:             entry.target.classList.add('visible');
+1535:           }, idx * 100);
+1536:           io.unobserve(entry.target);
+1537:         }
+1538:       });
+1539:     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+1540: 
+1541:     reveals.forEach(el => io.observe(el));
+1542: 
+1543:     // --- Parallax hero ornament ---
+1544:     const ornament = document.querySelector('.hero-ornament');
+1545:     const heroGlow = document.querySelector('.hero-glow');
+1546:     window.addEventListener('scroll', () => {
+1547:       const y = window.scrollY;
+1548:       if (ornament) ornament.style.transform = `translate(-50%, calc(-50% + ${y * 0.3}px)) rotate(${y * 0.04}deg)`;
+1549:       if (heroGlow) heroGlow.style.transform  = `translate(-50%, calc(-50% + ${y * 0.15}px))`;
+1550:     });
+1551: 
+1552:     // --- Hamburger / mobile nav ---
+1553:     const hamburger  = document.getElementById('hamburger');
+1554:     const mobileNav  = document.getElementById('mobileNav');
+1555: 
+1556:     function toggleMenu(open) {
+1557:       hamburger.classList.toggle('open', open);
+1558:       mobileNav.classList.toggle('open', open);
+1559:       hamburger.setAttribute('aria-expanded', open);
+1560:       mobileNav.setAttribute('aria-hidden', !open);
+1561:       document.body.style.overflow = open ? 'hidden' : '';
+1562:     }
+1563: 
+1564:     hamburger.addEventListener('click', () => toggleMenu(!mobileNav.classList.contains('open')));
+1565: 
+1566:     document.querySelectorAll('.mobile-nav-link').forEach(link => {
+1567:       link.addEventListener('click', () => toggleMenu(false));
+1568:     });
+1569: 
+1570:     document.addEventListener('keydown', e => {
+1571:       if (e.key === 'Escape') toggleMenu(false);
+1572:     });
+1573: 
+1574:     // --- Counter animation ---
+1575:     function animateCounters() {
+1576:       document.querySelectorAll('.stat-num').forEach(el => {
+1577:         const text  = el.textContent;
+1578:         const match = text.match(/(\d+)/);
+1579:         if (!match) return;
+1580:         const target = parseInt(match[1]);
+1581:         const suffix = text.replace(match[1], '');
+1582:         let current = 0;
+1583:         const step = target / 40;
+1584:         const timer = setInterval(() => {
+1585:           current = Math.min(current + step, target);
+1586:           el.textContent = Math.round(current) + suffix;
+1587:           if (current >= target) clearInterval(timer);
+1588:         }, 28);
+1589:       });
+1590:     }
+1591: 
+1592:     const statsSection = document.querySelector('.about-stats');
+1593:     if (statsSection) {
+1594:       new IntersectionObserver((entries) => {
+1595:         if (entries[0].isIntersecting) {
+1596:           animateCounters();
+1597:         }
+1598:       }, { threshold: 0.5 }).observe(statsSection);
+1599:     }
+1600:   </script>
+1601: 
+1602: </body>
+1603: </html>

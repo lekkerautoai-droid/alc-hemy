@@ -1,0 +1,845 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events &amp; Classes — ALC_Hemy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared/styles.css" />
+  <style>
+    /* ============================
+       EVENTS PAGE STYLES
+    ============================ */
+    .events-hero-bg {
+      background-image:
+        radial-gradient(ellipse 80% 50% at 50% 100%, rgba(123,45,0,0.3) 0%, transparent 70%),
+        linear-gradient(180deg, rgba(13,10,7,0.7) 0%, rgba(13,10,7,0.5) 50%, rgba(13,10,7,0.95) 100%),
+        url('imgs/events.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* ============================
+       UPCOMING EVENTS
+    ============================ */
+    .upcoming-section {
+      padding: 7rem 0;
+      background: var(--ink-2);
+    }
+    .upcoming-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 4rem;
+    }
+
+    .event-card-full {
+      background: rgba(13, 10, 7, 0.7);
+      border: 1px solid rgba(200, 134, 10, 0.1);
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.4s;
+    }
+    .event-card-full:hover {
+      border-color: rgba(200, 134, 10, 0.3);
+    }
+    .event-card-full::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 3px; height: 0;
+      background: var(--amber);
+      transition: height 0.5s ease;
+    }
+    .event-card-full:hover::before { height: 100%; }
+
+    .event-card-inner {
+      padding: 3rem;
+    }
+
+    .event-date-badge {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 70px; height: 70px;
+      background: var(--amber);
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .event-date-badge .day {
+      font-family: var(--serif-display);
+      font-size: 1.8rem;
+      font-weight: 300;
+      line-height: 1;
+    }
+    .event-date-badge .month {
+      font-family: var(--serif-caps);
+      font-size: 0.45rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-top: 0.15rem;
+    }
+
+    .event-card-full .event-date {
+      font-family: var(--serif-caps);
+      font-size: 0.55rem;
+      letter-spacing: 0.35em;
+      color: var(--amber);
+      margin-bottom: 0.8rem;
+    }
+    .event-card-full .event-title {
+      font-family: var(--serif-display);
+      font-size: 1.9rem;
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+      line-height: 1.1;
+    }
+    .event-card-full .event-title em { font-style: italic; color: var(--parchment-2); }
+    .event-card-full .event-desc {
+      font-size: 0.92rem;
+      color: var(--dust);
+      font-style: italic;
+      line-height: 1.75;
+      margin-bottom: 1.8rem;
+    }
+    .event-meta {
+      display: flex; gap: 2rem; margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .event-meta-item {
+      display: flex; flex-direction: column; gap: 0.2rem;
+    }
+    .event-meta-label {
+      font-family: var(--serif-caps);
+      font-size: 0.48rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--dust);
+    }
+    .event-meta-value {
+      font-family: var(--serif-display);
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--parchment-2);
+    }
+    .event-card-full .event-link {
+      font-family: var(--serif-caps);
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: var(--amber);
+      padding: 0.8rem 1.8rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .event-card-full .event-link:hover {
+      background: var(--amber-2);
+      transform: translateY(-1px);
+    }
+
+    /* Featured event - full width */
+    .event-card-full.featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 340px;
+    }
+    .event-card-full.featured .event-card-img {
+      background:
+        linear-gradient(rgba(13,10,7,0.4), rgba(13,10,7,0.6)),
+        url('imgs/events.jpg') center/cover;
+      min-height: 280px;
+    }
+    .event-card-full.featured .event-card-inner {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 4rem;
+    }
+
+    /* ============================
+       MONTHLY RECURRING
+    ============================ */
+    .recurring-section {
+      padding: 6rem 0;
+      background: var(--ink);
+      border-top: 1px solid rgba(200,134,10,0.08);
+    }
+    .recurring-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 4rem;
+    }
+    .recurring-card {
+      padding: 2.5rem;
+      background: var(--ink-2);
+      border: 1px solid rgba(200, 134, 10, 0.08);
+      transition: border-color 0.3s, background 0.3s;
+      text-align: center;
+    }
+    .recurring-card:hover {
+      border-color: rgba(200, 134, 10, 0.2);
+      background: rgba(26, 18, 8, 0.9);
+    }
+    .recurring-icon {
+      font-family: var(--serif-display);
+      font-size: 3rem;
+      color: rgba(200, 134, 10, 0.3);
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .recurring-schedule {
+      font-family: var(--serif-caps);
+      font-size: 0.52rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.8rem;
+    }
+    .recurring-title {
+      font-family: var(--serif-display);
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 0.7rem;
+      line-height: 1.2;
+    }
+    .recurring-title em { font-style: italic; color: var(--parchment-2); }
+    .recurring-desc {
+      font-size: 0.88rem;
+      color: var(--dust);
+      font-style: italic;
+      line-height: 1.65;
+      margin-bottom: 1.5rem;
+    }
+    .recurring-link {
+      font-family: var(--serif-caps);
+      font-size: 0.52rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--amber);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(200,134,10,0.3);
+      padding-bottom: 2px;
+      transition: color 0.3s, border-color 0.3s;
+    }
+    .recurring-link:hover { color: var(--amber-2); border-color: var(--amber-2); }
+
+    /* ============================
+       PRIVATE EVENTS
+    ============================ */
+    .private-section {
+      padding: 7rem 0;
+      background:
+        linear-gradient(rgba(13,10,7,0.85), rgba(13,10,7,0.85)),
+        url('imgs/about.jpg') center/cover fixed;
+    }
+    .private-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .private-text .section-title { margin-bottom: 1.5rem; }
+    .private-text p {
+      color: var(--dust);
+      font-style: italic;
+      font-size: 1rem;
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+    }
+    .private-text .btn-primary { margin-right: 1rem; margin-top: 1rem; }
+    .private-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .private-feature {
+      padding: 1.8rem;
+      border: 1px solid rgba(200, 134, 10, 0.12);
+      background: rgba(13, 10, 7, 0.5);
+    }
+    .private-feature-num {
+      font-family: var(--serif-display);
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: rgba(200, 134, 10, 0.3);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .private-feature-title {
+      font-family: var(--serif-caps);
+      font-size: 0.52rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--parchment-2);
+      margin-bottom: 0.5rem;
+    }
+    .private-feature p {
+      font-size: 0.85rem;
+      color: var(--dust);
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    /* ============================
+       PAST EVENTS GALLERY
+    ============================ */
+    .past-section {
+      padding: 6rem 0;
+      background: var(--ink-2);
+    }
+    .past-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      margin-top: 4rem;
+    }
+    .past-item {
+      aspect-ratio: 1;
+      background: var(--ash);
+      position: relative;
+      overflow: hidden;
+      cursor: none;
+    }
+    .past-item-bg {
+      position: absolute; inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.6s ease;
+      filter: sepia(0.4) saturate(0.8);
+    }
+    .past-item:hover .past-item-bg { transform: scale(1.07); filter: sepia(0.2) saturate(1); }
+    .past-item-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(13,10,7,0.9) 0%, transparent 55%);
+      transition: background 0.4s;
+    }
+    .past-item:hover .past-item-overlay {
+      background: linear-gradient(to top, rgba(13,10,7,0.75) 0%, rgba(13,10,7,0.2) 55%);
+    }
+    .past-item-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 1.5rem;
+    }
+    .past-item-date {
+      font-family: var(--serif-caps);
+      font-size: 0.48rem;
+      letter-spacing: 0.3em;
+      color: var(--amber);
+      margin-bottom: 0.3rem;
+    }
+    .past-item-title {
+      font-family: var(--serif-display);
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.2;
+    }
+    .past-item-title em { font-style: italic; color: var(--parchment-2); }
+
+    /* Alternating image backgrounds for past events */
+    .past-bg-1 { background-image: linear-gradient(160deg, #2a1f10, #1a0e05), url('imgs/cocktail1.jpg'); background-size: cover; }
+    .past-bg-2 { background-image: linear-gradient(160deg, #1a1208, #2a1800); }
+    .past-bg-3 { background-image: linear-gradient(160deg, #180e05, #1a1208), url('imgs/cocktail3.jpg'); background-size: cover; }
+    .past-bg-4 { background-image: linear-gradient(160deg, #100d06, #2a1f10); }
+    .past-bg-5 { background-image: linear-gradient(160deg, #1a1208, #180e05); }
+    .past-bg-6 { background-image: linear-gradient(160deg, #2a1f10, #1a0e05), url('imgs/process.jpg'); background-size: cover; }
+    .past-bg-7 { background-image: linear-gradient(160deg, #100d06, #1a1208); }
+    .past-bg-8 { background-image: linear-gradient(160deg, #2a1800, #1a0e05), url('imgs/about.jpg'); background-size: cover; }
+
+    @media (max-width: 900px) {
+      .upcoming-grid { grid-template-columns: 1fr; }
+      .event-card-full.featured { grid-template-columns: 1fr; }
+      .event-card-full.featured .event-card-img { min-height: 220px; }
+      .recurring-grid { grid-template-columns: 1fr 1fr; }
+      .private-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .past-grid { grid-template-columns: repeat(2, 1fr); }
+      .private-section { background-attachment: scroll; }
+    }
+    @media (max-width: 600px) {
+      .recurring-grid { grid-template-columns: 1fr; }
+      .private-features { grid-template-columns: 1fr; }
+      .past-grid { grid-template-columns: repeat(2, 1fr); }
+      .event-card-inner { padding: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor-dot"><div class="cursor-dot"></div></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">ALC<span>_</span>Hemy</a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">The House</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="craft.html">Craft</a></li>
+      <li><a href="events.html" class="active">Events</a></li>
+    </ul>
+    <a href="reservation.html" class="nav-cta">Reserve a Table</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Nav Overlay -->
+  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <a href="index.html#about" class="mobile-nav-link">The House</a>
+    <div class="mobile-nav-divider"></div>
+    <a href="menu.html"        class="mobile-nav-link">Menu</a>
+    <div class="mobile-nav-divider"></div>
+    <a href="craft.html"       class="mobile-nav-link">Craft</a>
+    <div class="mobile-nav-divider"></div>
+    <a href="events.html"      class="mobile-nav-link">Events</a>
+    <a href="reservation.html" class="mobile-cta mobile-nav-link">Reserve a Table</a>
+  </div>
+
+  <!-- Page Hero -->
+  <section class="page-hero" style="min-height:60vh;">
+    <div class="page-hero-bg events-hero-bg"></div>
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 70%, rgba(123,45,0,0.2) 0%, transparent 65%);pointer-events:none;"></div>
+    <div class="page-hero-content">
+      <p class="page-hero-eyebrow">2026 Programme &nbsp;&#10022;&nbsp; Intimate &nbsp;&#10022;&nbsp; Handcrafted Experiences</p>
+      <h1 class="page-hero-title">Events <em>&amp; Classes</em></h1>
+      <p class="page-hero-subtitle">Where knowledge is poured as freely as the spirits.</p>
+    </div>
+  </section>
+
+  <!-- ============================
+       UPCOMING EVENTS
+  ============================ -->
+  <section class="upcoming-section">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-label">Upcoming</p>
+        <h2 class="section-title">Reserve your <em>seat.</em></h2>
+        <p style="color:var(--dust);font-style:italic;margin-top:0.8rem;font-size:1rem;max-width:580px;">Our events are deliberately small — never more than twenty guests. Book early. We do not have waiting lists.</p>
+      </div>
+
+      <div class="upcoming-grid">
+
+        <!-- Featured Event -->
+        <div class="event-card-full featured reveal">
+          <div class="event-card-img"></div>
+          <div class="event-card-inner">
+            <div class="event-date-badge">
+              <span class="day">12</span>
+              <span class="month">Apr</span>
+            </div>
+            <div class="event-date">Saturday · April 12, 2026 · 18:00 — 21:00</div>
+            <div class="event-title">The <em>Bitters Lab</em></div>
+            <p class="event-desc">Spend an evening with our lead alchemist crafting your own house bitters from scratch — gentian root, citrus peel, and secrets that only the lab holds. You'll leave with a signed bottle of your own creation. Aperitivo and light provisions included.</p>
+            <div class="event-meta">
+              <div class="event-meta-item">
+                <span class="event-meta-label">Investment</span>
+                <span class="event-meta-value">£85 per person</span>
+              </div>
+              <div class="event-meta-item">
+                <span class="event-meta-label">Capacity</span>
+                <span class="event-meta-value">12 guests</span>
+              </div>
+              <div class="event-meta-item">
+                <span class="event-meta-label">Availability</span>
+                <span class="event-meta-value">4 seats remaining</span>
+              </div>
+            </div>
+            <a href="reservation.html?event=bitters-lab" class="event-link">Reserve a Seat</a>
+          </div>
+        </div>
+
+        <!-- Event 2 -->
+        <div class="event-card-full reveal">
+          <div class="event-card-inner">
+            <div class="event-date-badge">
+              <span class="day">25</span>
+              <span class="month">Apr</span>
+            </div>
+            <div class="event-date">Friday · April 25, 2026 · 19:00 — 22:00</div>
+            <div class="event-title">Smoke &amp; <em>Single Malt</em></div>
+            <p class="event-desc">A curated tasting of five rare peated single malts, each paired with our hand-rolled smoked cocktail accompaniments. We explore terroir, cooper's art, and the quiet science of peat. A guided journey from Islay to the Highlands — no whisky knowledge required, only curiosity.</p>
+            <div class="event-meta">
+              <div class="event-meta-item">
+                <span class="event-meta-label">Investment</span>
+                <span class="event-meta-value">£95 per person</span>
+              </div>
+              <div class="event-meta-item">
+                <span class="event-meta-label">Capacity</span>
+                <span class="event-meta-value">16 guests</span>
+              </div>
+            </div>
+            <a href="reservation.html?event=smoke-single-malt" class="event-link">Reserve a Seat</a>
+          </div>
+        </div>
+
+        <!-- Event 3 -->
+        <div class="event-card-full reveal">
+          <div class="event-card-inner">
+            <div class="event-date-badge">
+              <span class="day">10</span>
+              <span class="month">May</span>
+            </div>
+            <div class="event-date">Sunday · May 10, 2026 · 14:00 — 17:00</div>
+            <div class="event-title">The Cocktail <em>Composition</em> Workshop</div>
+            <p class="event-desc">Not a demonstration — a class. You will build three original cocktails under the guidance of our alchemists, learning to balance acid, sugar, alcohol, and bitterness by instinct. Take home a personalised recipe card written in your hand.</p>
+            <div class="event-meta">
+              <div class="event-meta-item">
+                <span class="event-meta-label">Investment</span>
+                <span class="event-meta-value">£75 per person</span>
+              </div>
+              <div class="event-meta-item">
+                <span class="event-meta-label">Capacity</span>
+                <span class="event-meta-value">10 guests</span>
+              </div>
+            </div>
+            <a href="reservation.html?event=cocktail-workshop" class="event-link">Reserve a Seat</a>
+          </div>
+        </div>
+
+        <!-- Event 4 -->
+        <div class="event-card-full reveal">
+          <div class="event-card-inner">
+            <div class="event-date-badge">
+              <span class="day">21</span>
+              <span class="month">Jun</span>
+            </div>
+            <div class="event-date">Saturday · June 21, 2026 · 20:00 — 01:00</div>
+            <div class="event-title">Midsummer <em>Ritual</em></div>
+            <p class="event-desc">Our annual solstice evening. The longest night. A five-course cocktail tasting menu inspired by old midsummer herbalism, served in a candlelit barn surrounded by foraged botanicals. Music, fire, and the kind of conversation that only happens once a year.</p>
+            <div class="event-meta">
+              <div class="event-meta-item">
+                <span class="event-meta-label">Investment</span>
+                <span class="event-meta-value">£130 per person</span>
+              </div>
+              <div class="event-meta-item">
+                <span class="event-meta-label">Capacity</span>
+                <span class="event-meta-value">20 guests</span>
+              </div>
+            </div>
+            <a href="reservation.html?event=midsummer" class="event-link">Reserve a Seat</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       MONTHLY RECURRING
+  ============================ -->
+  <section class="recurring-section">
+    <div class="container">
+      <div class="reveal" style="text-align:center;">
+        <p class="section-label">Always On</p>
+        <h2 class="section-title">Monthly <em>Programmes</em></h2>
+        <p style="color:var(--dust);font-style:italic;margin-top:0.8rem;font-size:1rem;">These gatherings return with each moon. No booking required for drop-in sessions — arrive, sit, and let the evening unfold.</p>
+      </div>
+
+      <div class="recurring-grid">
+        <div class="recurring-card reveal">
+          <span class="recurring-icon">&#9791;</span>
+          <div class="recurring-schedule">Every Last Sunday · 14:00</div>
+          <div class="recurring-title">Forager's <em>Table</em></div>
+          <p class="recurring-desc">An open workshop where we translate wild-harvested and seasonal ingredients into experimental cocktails. Bring your curiosity and your finds from the morning market. Each session is unique to the week's forage.</p>
+          <a href="reservation.html?event=foragers-table" class="recurring-link">Join the List</a>
+        </div>
+
+        <div class="recurring-card reveal">
+          <span class="recurring-icon">&#9780;</span>
+          <div class="recurring-schedule">First Thursday · 19:30</div>
+          <div class="recurring-title">The <em>Alchemist's</em> Reading Circle</div>
+          <p class="recurring-desc">Cocktails and conversation about the literature of food, drink, and the sensory world. A book is selected quarterly by the house — you read it, we pour for it. No essays. Only honest talk over honest spirits.</p>
+          <a href="reservation.html?event=reading-circle" class="recurring-link">Join the List</a>
+        </div>
+
+        <div class="recurring-card reveal">
+          <span class="recurring-icon">&#9670;</span>
+          <div class="recurring-schedule">Third Saturday · 11:00</div>
+          <div class="recurring-title">Morning <em>Bitters</em> Session</div>
+          <p class="recurring-desc">Not everything alchemical requires the dark. Weekend mornings, we open the lab for a gentle introduction to non-alcoholic bitters, shrubs, and fermented sodas. Coffee served. Dogs welcome. Hangovers not judged.</p>
+          <a href="reservation.html?event=morning-bitters" class="recurring-link">Join the List</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       PRIVATE EVENTS
+  ============================ -->
+  <section class="private-section" id="private">
+    <div class="container">
+      <div class="private-grid">
+        <div class="private-text reveal">
+          <p class="section-label">Private Hire</p>
+          <h2 class="section-title">Your evening, <em>entirely.</em></h2>
+          <p>ALC_Hemy is available for exclusive private hire — birthdays, anniversaries, corporate retreats, and the kind of celebrations that demand a setting as considered as the people in the room.</p>
+          <p>We close the bar to the public. We design a bespoke menu around your tastes. Our alchemists are your alchemists for the evening. Nothing is off the shelf. Everything is made for you.</p>
+          <p>Capacity: 8 to 60 guests &middot; Available Tuesday through Sunday &middot; Minimum spend applies.</p>
+          <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;">
+            <a href="reservation.html#private" class="btn-primary">Enquire Now</a>
+            <a href="mailto:alchemycocktailcreation@gmail.com" class="btn-ghost">Email Directly</a>
+          </div>
+        </div>
+
+        <div class="private-features reveal">
+          <div class="private-feature">
+            <div class="private-feature-num">01</div>
+            <div class="private-feature-title">Bespoke Menu</div>
+            <p>We design every drink around your palate and occasion. A pre-event consultation with our lead alchemist is included.</p>
+          </div>
+          <div class="private-feature">
+            <div class="private-feature-num">02</div>
+            <div class="private-feature-title">Exclusive Venue</div>
+            <p>The entire barn is yours. The bar, the terrace, the fire. No strangers, no background music you didn't choose.</p>
+          </div>
+          <div class="private-feature">
+            <div class="private-feature-num">03</div>
+            <div class="private-feature-title">Full Bar Staff</div>
+            <p>Our team of three alchemists are present for the evening. Service is unhurried, knowledgeable, and never intrusive.</p>
+          </div>
+          <div class="private-feature">
+            <div class="private-feature-num">04</div>
+            <div class="private-feature-title">Take-Home Bottles</div>
+            <p>Each guest leaves with a personalised bottle of house spirit or bitters — labelled with the evening's date and their name.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       PAST EVENTS GALLERY
+  ============================ -->
+  <section class="past-section">
+    <div class="container">
+      <div class="reveal" style="text-align:center;">
+        <p class="section-label">The Archive</p>
+        <h2 class="section-title">Past <em>Rituals</em></h2>
+        <p style="color:var(--dust);font-style:italic;margin-top:0.8rem;font-size:1rem;">A record of evenings that will not come again in quite the same form.</p>
+      </div>
+    </div>
+
+    <div class="past-grid reveal" style="margin-top:3rem;">
+      <div class="past-item">
+        <div class="past-item-bg past-bg-1"></div>
+        <div class="past-item-overlay"></div>
+        <div class="past-item-content">
+          <div class="past-item-date">Winter Solstice · Dec 2025</div>
+          <div class="past-item-title">The Long <em>Dark</em></div>
+        </div>
+      </div>
+      <div class="past-item">
+        <div class="past-item-bg past-bg-2" style="background:linear-gradient(135deg,#2a1f10,#1a0e05);"></div>
+        <div class="past-item-overlay"></div>
+        <div class="past-item-content">
+          <div class="past-item-date">November 2025</div>
+          <div class="past-item-title">Botanica <em>Noctis</em></div>
+        </div>
+      </div>
+      <div class="past-item">
+        <div class="past-item-bg past-bg-3"></div>
+        <div class="past-item-overlay"></div>
+        <div class="past-item-content">
+          <div class="past-item-date">October 2025</div>
+          <div class="past-item-title">Harvest <em>Rites</em></div>
+        </div>
+      </div>
+      <div class="past-item">
+        <div class="past-item-bg" style="background:linear-gradient(160deg,#100d06,#2a1f10),url('imgs/cocktail2.jpg') center/cover;"></div>
+        <div class="past-item-overlay"></div>
+        <div class="past-item-content">
+          <div class="past-item-date">September 2025</div>
+          <div class="past-item-title">Green <em>Alchemy</em></div>
+        </div>
+      </div>
+      <div class="past-item">
+        <div class="past-item-bg" style="background:linear-gradient(160deg,#1a1208,#180e05);"></div>
+        <div class="past-item-overlay"></div>
+        <div class="past-item-content">
+          <div class="past-item-date">Midsummer 2025</div>
+          <div class="past-item-title">Solstice <em>Ritual</em></div>
+        </div>
+      </div>
+      <div class="past-item">
+        <div class="past-item-bg past-bg-6"></div>
+        <div class="past-item-overlay"></div>
+        <div class="past-item-content">
+          <div class="past-item-date">May 2025</div>
+          <div class="past-item-title">The Still <em>Awakens</em></div>
+        </div>
+      </div>
+      <div class="past-item">
+        <div class="past-item-bg" style="background:linear-gradient(160deg,#100d06,#1a1208);"></div>
+        <div class="past-item-overlay"></div>
+        <div class="past-item-content">
+          <div class="past-item-date">Spring 2025</div>
+          <div class="past-item-title">Bloom <em>&amp; Bitters</em></div>
+        </div>
+      </div>
+      <div class="past-item">
+        <div class="past-item-bg past-bg-8"></div>
+        <div class="past-item-overlay"></div>
+        <div class="past-item-content">
+          <div class="past-item-date">January 2025</div>
+          <div class="past-item-title">The First <em>Pour</em></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <div class="marquee-strip" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Handcrafted Bitters</span><span class="dot">&#10022;</span>
+      <span>Barrel-Aged Spirits</span><span class="dot">&#10022;</span>
+      <span>Seasonal Botanicals</span><span class="dot">&#10022;</span>
+      <span>House-Made Syrups</span><span class="dot">&#10022;</span>
+      <span>Cold-Pressed Citrus</span><span class="dot">&#10022;</span>
+      <span>Fire &amp; Ice</span><span class="dot">&#10022;</span>
+      <span>Rare Vintage Pours</span><span class="dot">&#10022;</span>
+      <span>Smoke &amp; Copper</span><span class="dot">&#10022;</span>
+      <span>Handcrafted Bitters</span><span class="dot">&#10022;</span>
+      <span>Barrel-Aged Spirits</span><span class="dot">&#10022;</span>
+      <span>Seasonal Botanicals</span><span class="dot">&#10022;</span>
+      <span>House-Made Syrups</span><span class="dot">&#10022;</span>
+      <span>Cold-Pressed Citrus</span><span class="dot">&#10022;</span>
+      <span>Fire &amp; Ice</span><span class="dot">&#10022;</span>
+      <span>Rare Vintage Pours</span><span class="dot">&#10022;</span>
+      <span>Smoke &amp; Copper</span><span class="dot">&#10022;</span>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="container reveal" style="position:relative;z-index:1;">
+      <p class="section-label">Experience It</p>
+      <h2 class="section-title">Your table <em>awaits.</em></h2>
+      <p>We keep it small, unhurried, and deliberate. The way all good things should be.</p>
+      <div class="cta-actions">
+        <a href="reservation.html" class="btn-primary">Reserve a Table</a>
+        <a href="reservation.html#private" class="btn-ghost">Private Hire</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section id="newsletter">
+    <div class="container">
+      <div class="newsletter-text">
+        <p class="section-label">Stay in the Lab</p>
+        <h3>Seasonal menus, events &amp;<br>the odd arcane recipe.</h3>
+      </div>
+      <form class="newsletter-form" onsubmit="return false;">
+        <input type="email" placeholder="your@email.com" aria-label="Email address" />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">ALC<span>_</span>Hemy</a>
+          <p>The art of liquid alchemy, practised in a converted barn at the edge of things worth tasting.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="menu.html">The Menu</a></li>
+            <li><a href="menu.html">Seasonal Specials</a></li>
+            <li><a href="menu.html">House Spirits</a></li>
+            <li><a href="menu.html">Wine &amp; Soda</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Visit</h4>
+          <ul>
+            <li><a href="reservation.html">Find Us</a></li>
+            <li><a href="reservation.html">Reservations</a></li>
+            <li><a href="reservation.html#private">Private Events</a></li>
+            <li><a href="reservation.html">Gift Cards</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>The Lab</h4>
+          <ul>
+            <li><a href="index.html#about">Our Story</a></li>
+            <li><a href="craft.html">The Craft</a></li>
+            <li><a href="events.html">Classes</a></li>
+            <li><a href="#">Press</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 ALC_Hemy &nbsp;&middot;&nbsp; All Rights Reserved</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/nickruger732/" target="_blank" rel="noopener">Instagram</a>
+          
+          <a href="#">TikTok</a>
+        </div>
+        <p>Drink Responsibly &nbsp;&middot;&nbsp; 18+</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const dot  = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.transform = `translate(${mx}px, ${my}px)`;
+    });
+    function lerpCursor() {
+      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+      ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
+      requestAnimationFrame(lerpCursor);
+    }
+    lerpCursor();
+    document.querySelectorAll('a, button, input').forEach(el => {
+      el.addEventListener('mouseenter', () => { ring.style.width='56px'; ring.style.height='56px'; ring.style.opacity='0.9'; });
+      el.addEventListener('mouseleave', () => { ring.style.width='36px'; ring.style.height='36px'; ring.style.opacity='0.6'; });
+    });
+
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const siblings = [...entry.target.parentElement.querySelectorAll('.reveal')];
+          const idx = siblings.indexOf(entry.target);
+          setTimeout(() => entry.target.classList.add('visible'), idx * 100);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    reveals.forEach(el => io.observe(el));
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    function toggleMenu(open) {
+      hamburger.classList.toggle('open', open);
+      mobileNav.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+      mobileNav.setAttribute('aria-hidden', !open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    hamburger.addEventListener('click', () => toggleMenu(!mobileNav.classList.contains('open')));
+    document.querySelectorAll('.mobile-nav-link').forEach(l => l.addEventListener('click', () => toggleMenu(false)));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleMenu(false); });
+  </script>
+</body>
+</html>
