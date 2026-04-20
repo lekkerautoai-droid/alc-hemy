@@ -6,8 +6,10 @@
   <title>The Craft — ALC_Hemy</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,300;1,6..96,400;1,6..96,500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="shared/styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <style>
     /* ============================
        CRAFT PAGE STYLES
@@ -291,16 +293,101 @@
     ============================ */
     .still-section {
       padding: 8rem 0;
-      background:
-        linear-gradient(rgba(13,10,7,0.9), rgba(13,10,7,0.9)),
-        url('imgs/process.jpg') center/cover fixed;
+      position: relative;
+      overflow: hidden;
       border-top: 1px solid rgba(200,134,10,0.08);
+      background: var(--ink);
     }
+
+    /* === Living background layers === */
+    .still-bg {
+      position: absolute; inset: -60px;
+      z-index: 0;
+    }
+    .still-bg-img {
+      position: absolute; inset: 0;
+      background: url('imgs/process.jpg') center/cover no-repeat;
+      animation: still-drift 25s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+    @keyframes still-drift {
+      0%   { transform: scale(1.08) translate(0, 0); }
+      25%  { transform: scale(1.12) translate(-1%, 0.5%); }
+      50%  { transform: scale(1.1) translate(0.5%, -0.5%); }
+      75%  { transform: scale(1.13) translate(-0.5%, 0.3%); }
+      100% { transform: scale(1.09) translate(0.3%, -0.3%); }
+    }
+    .still-bg-dark {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(13,10,7,0.88) 0%,
+        rgba(13,10,7,0.75) 30%,
+        rgba(13,10,7,0.78) 70%,
+        rgba(13,10,7,0.92) 100%
+      );
+    }
+    .still-bg-glow {
+      position: absolute; inset: 0;
+      background: radial-gradient(
+        ellipse 60% 70% at 35% 50%,
+        rgba(160, 50, 180, 0.12) 0%,
+        rgba(120, 30, 150, 0.06) 40%,
+        transparent 70%
+      );
+      animation: still-glow-pulse 6s ease-in-out infinite alternate;
+    }
+    @keyframes still-glow-pulse {
+      0%   { opacity: 0.5; transform: scale(1); }
+      50%  { opacity: 1; transform: scale(1.05); }
+      100% { opacity: 0.7; transform: scale(0.98); }
+    }
+    .still-bg-streak {
+      position: absolute;
+      top: -20%; left: -30%;
+      width: 160%; height: 140%;
+      background: linear-gradient(
+        125deg,
+        transparent 42%,
+        rgba(200, 134, 10, 0.04) 46%,
+        rgba(255, 255, 255, 0.03) 48%,
+        transparent 52%
+      );
+      animation: still-streak 12s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes still-streak {
+      0%   { transform: translateX(-60%) rotate(0deg); }
+      100% { transform: translateX(60%) rotate(0deg); }
+    }
+
+    /* Bokeh particles */
+    .still-bokeh {
+      position: absolute; inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .still-bokeh-dot {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(6px);
+      opacity: 0;
+      animation: bokeh-float linear infinite;
+    }
+    @keyframes bokeh-float {
+      0%   { transform: translateY(100%) translateX(0); opacity: 0; }
+      10%  { opacity: 0.6; }
+      90%  { opacity: 0.4; }
+      100% { transform: translateY(-120%) translateX(30px); opacity: 0; }
+    }
+
     .still-grid {
       display: grid;
       grid-template-columns: 1fr 1.2fr;
       gap: 6rem;
       align-items: center;
+      position: relative;
+      z-index: 2;
     }
     .still-ornament {
       position: relative;
@@ -375,7 +462,7 @@
       .team-grid { grid-template-columns: 1fr 1fr; }
       .ingredients-grid { grid-template-columns: 1fr 1fr; }
       .still-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .still-section { background-attachment: scroll; }
+      .still-bg-img { animation-duration: 30s; }
     }
     @media (max-width: 600px) {
       .team-grid { grid-template-columns: 1fr; }
@@ -550,6 +637,15 @@
        THE STILL
   ============================ -->
   <section class="still-section">
+    <!-- Living background -->
+    <div class="still-bg">
+      <div class="still-bg-img"></div>
+      <div class="still-bg-dark"></div>
+      <div class="still-bg-glow"></div>
+      <div class="still-bg-streak"></div>
+      <div class="still-bokeh" id="still-bokeh"></div>
+    </div>
+
     <div class="container">
       <div class="still-grid">
         <div class="still-ornament reveal">
@@ -794,6 +890,9 @@
   </footer>
 
   <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // --- Custom cursor ---
     const dot  = document.getElementById('cursor-dot');
     const ring = document.getElementById('cursor-ring');
     let mx = 0, my = 0, rx = 0, ry = 0;
@@ -808,26 +907,99 @@
     }
     lerpCursor();
     document.querySelectorAll('a, button, input').forEach(el => {
-      el.addEventListener('mouseenter', () => { ring.style.width='56px'; ring.style.height='56px'; ring.style.opacity='0.9'; });
-      el.addEventListener('mouseleave', () => { ring.style.width='36px'; ring.style.height='36px'; ring.style.opacity='0.6'; });
+      el.addEventListener('mouseenter', () => gsap.to(ring, { width: 56, height: 56, opacity: 0.9, duration: 0.3 }));
+      el.addEventListener('mouseleave', () => gsap.to(ring, { width: 36, height: 36, opacity: 0.6, duration: 0.3 }));
     });
 
+    // --- Navbar ---
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+    ScrollTrigger.create({
+      start: 60,
+      onUpdate: self => navbar.classList.toggle('scrolled', self.scroll() > 60)
+    });
 
-    const reveals = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const siblings = [...entry.target.parentElement.querySelectorAll('.reveal')];
-          const idx = siblings.indexOf(entry.target);
-          setTimeout(() => entry.target.classList.add('visible'), idx * 120);
-          io.unobserve(entry.target);
+    // --- Scroll reveals with GSAP ---
+    document.querySelectorAll('.reveal').forEach(el => {
+      const parent = el.parentElement;
+      const siblings = [...parent.querySelectorAll(':scope > .reveal')];
+      const idx = siblings.indexOf(el);
+      gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        delay: idx * 0.12,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 88%',
+          toggleActions: 'play none none none'
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    reveals.forEach(el => io.observe(el));
+    });
 
+    // --- Bokeh particles ---
+    const bokehContainer = document.getElementById('still-bokeh');
+    if (bokehContainer) {
+      const colors = [
+        'rgba(160, 50, 180, 0.5)',
+        'rgba(200, 134, 10, 0.4)',
+        'rgba(255, 200, 100, 0.3)',
+        'rgba(180, 80, 200, 0.35)',
+        'rgba(255, 255, 255, 0.2)',
+        'rgba(120, 30, 150, 0.4)'
+      ];
+      for (let i = 0; i < 18; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'still-bokeh-dot';
+        const size = 4 + Math.random() * 14;
+        const blur = 4 + Math.random() * 8;
+        dot.style.cssText = `
+          width: ${size}px;
+          height: ${size}px;
+          left: ${5 + Math.random() * 90}%;
+          background: ${colors[Math.floor(Math.random() * colors.length)]};
+          filter: blur(${blur}px);
+          animation-duration: ${8 + Math.random() * 14}s;
+          animation-delay: ${-Math.random() * 20}s;
+        `;
+        bokehContainer.appendChild(dot);
+      }
+    }
+
+    // --- Still section: scroll-linked glow intensify ---
+    const stillGlow = document.querySelector('.still-bg-glow');
+    if (stillGlow) {
+      gsap.fromTo(stillGlow,
+        { opacity: 0.3 },
+        {
+          opacity: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.still-section',
+            start: 'top 80%',
+            end: 'center center',
+            scrub: true
+          }
+        }
+      );
+    }
+
+    // --- Still circle: rotate on scroll ---
+    const stillCircle = document.querySelector('.still-circle');
+    if (stillCircle) {
+      gsap.to(stillCircle, {
+        rotation: 360,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.still-section',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 2
+        }
+      });
+    }
+
+    // --- Hamburger ---
     const hamburger = document.getElementById('hamburger');
     const mobileNav = document.getElementById('mobileNav');
     function toggleMenu(open) {

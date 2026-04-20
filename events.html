@@ -6,7 +6,7 @@
   <title>Events &amp; Classes — ALC_Hemy</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,300;1,6..96,400;1,6..96,500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="shared/styles.css" />
   <style>
     /* ============================
@@ -310,8 +310,6 @@
     }
     .past-item-bg {
       position: absolute; inset: 0;
-      background-size: cover;
-      background-position: center;
       transition: transform 0.6s ease;
       filter: sepia(0.4) saturate(0.8);
     }
@@ -345,14 +343,14 @@
     .past-item-title em { font-style: italic; color: var(--parchment-2); }
 
     /* Alternating image backgrounds for past events */
-    .past-bg-1 { background-image: linear-gradient(160deg, #2a1f10, #1a0e05), url('imgs/cocktail1.jpg'); background-size: cover; }
-    .past-bg-2 { background-image: linear-gradient(160deg, #1a1208, #2a1800); }
-    .past-bg-3 { background-image: linear-gradient(160deg, #180e05, #1a1208), url('imgs/cocktail3.jpg'); background-size: cover; }
-    .past-bg-4 { background-image: linear-gradient(160deg, #100d06, #2a1f10); }
-    .past-bg-5 { background-image: linear-gradient(160deg, #1a1208, #180e05); }
-    .past-bg-6 { background-image: linear-gradient(160deg, #2a1f10, #1a0e05), url('imgs/process.jpg'); background-size: cover; }
-    .past-bg-7 { background-image: linear-gradient(160deg, #100d06, #1a1208); }
-    .past-bg-8 { background-image: linear-gradient(160deg, #2a1800, #1a0e05), url('imgs/about.jpg'); background-size: cover; }
+    .past-bg-1 { background: linear-gradient(160deg, rgba(42,31,16,0.6), rgba(26,14,5,0.5)), url('imgs/cocktail1.jpg') center/cover no-repeat; }
+    .past-bg-2 { background: linear-gradient(160deg, rgba(26,18,8,0.7), rgba(42,24,0,0.6)), url('imgs/about.jpg') center/cover no-repeat; }
+    .past-bg-3 { background: linear-gradient(160deg, rgba(24,14,5,0.5), rgba(26,18,8,0.5)), url('imgs/cocktail3.jpg') center/cover no-repeat; }
+    .past-bg-4 { background: linear-gradient(160deg, rgba(16,13,6,0.5), rgba(42,31,16,0.5)), url('imgs/process.jpg') center/cover no-repeat; }
+    .past-bg-5 { background: linear-gradient(160deg, rgba(26,18,8,0.6), rgba(24,14,5,0.6)), url('imgs/events.jpg') center/cover no-repeat; }
+    .past-bg-6 { background: linear-gradient(160deg, rgba(42,24,0,0.5), rgba(16,13,6,0.5)), url('imgs/cocktail2.jpg') center/cover no-repeat; }
+    .past-bg-7 { background: linear-gradient(160deg, rgba(26,18,8,0.6), rgba(26,14,5,0.5)), url('imgs/hero.jpg') center/cover no-repeat; }
+    .past-bg-8 { background: linear-gradient(160deg, rgba(24,14,5,0.5), rgba(42,31,16,0.6)), url('imgs/cocktail1.jpg') center 30%/cover no-repeat; }
 
     @media (max-width: 900px) {
       .upcoming-grid { grid-template-columns: 1fr; }
@@ -638,7 +636,7 @@
         </div>
       </div>
       <div class="past-item">
-        <div class="past-item-bg past-bg-2" style="background:linear-gradient(135deg,#2a1f10,#1a0e05);"></div>
+        <div class="past-item-bg past-bg-2"></div>
         <div class="past-item-overlay"></div>
         <div class="past-item-content">
           <div class="past-item-date">November 2025</div>
@@ -654,7 +652,7 @@
         </div>
       </div>
       <div class="past-item">
-        <div class="past-item-bg" style="background:linear-gradient(160deg,#100d06,#2a1f10),url('imgs/cocktail2.jpg') center/cover;"></div>
+        <div class="past-item-bg past-bg-4"></div>
         <div class="past-item-overlay"></div>
         <div class="past-item-content">
           <div class="past-item-date">September 2025</div>
@@ -662,7 +660,7 @@
         </div>
       </div>
       <div class="past-item">
-        <div class="past-item-bg" style="background:linear-gradient(160deg,#1a1208,#180e05);"></div>
+        <div class="past-item-bg past-bg-5"></div>
         <div class="past-item-overlay"></div>
         <div class="past-item-content">
           <div class="past-item-date">Midsummer 2025</div>
@@ -678,7 +676,7 @@
         </div>
       </div>
       <div class="past-item">
-        <div class="past-item-bg" style="background:linear-gradient(160deg,#100d06,#1a1208);"></div>
+        <div class="past-item-bg past-bg-7"></div>
         <div class="past-item-overlay"></div>
         <div class="past-item-content">
           <div class="past-item-date">Spring 2025</div>
