@@ -134,7 +134,7 @@ section { position: relative; }
 .section-title {
   font-family: var(--serif-display);
   font-size: clamp(2.4rem, 4.5vw, 3.8rem);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.1;
   color: var(--white);
 }
@@ -207,7 +207,7 @@ nav.scrolled {
   color: var(--amber-2);
   text-decoration: none;
 }
-.nav-logo span { color: var(--parchment-2); font-weight: 300; }
+.nav-logo span { color: var(--parchment-2); font-weight: 400; }
 .nav-links {
   display: flex; gap: 2.5rem; list-style: none;
 }
@@ -288,7 +288,7 @@ nav.scrolled {
 .mobile-nav a {
   font-family: var(--serif-display);
   font-size: 2.2rem;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--parchment);
   text-decoration: none;
   letter-spacing: 0.05em;
@@ -335,7 +335,7 @@ nav.scrolled {
 .page-hero-title {
   font-family: var(--serif-display);
   font-size: clamp(3rem, 7vw, 6rem);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.05;
   color: var(--white);
   margin-bottom: 1rem;
@@ -366,7 +366,7 @@ nav.scrolled {
    MARQUEE STRIP
 ============================ */
 .marquee-strip {
-  background: linear-gradient(90deg, #1a1208, #2a1a08, #1f1505, #2a1a08, #1a1208);
+  background: linear-gradient(90deg, oklch(12.5% 0.025 70), oklch(17% 0.035 68), oklch(14.5% 0.030 69), oklch(17% 0.035 68), oklch(12.5% 0.025 70));
   padding: 0.8rem 0;
   overflow: hidden;
   white-space: nowrap;
@@ -469,7 +469,7 @@ nav.scrolled {
 .stat-num {
   font-family: var(--serif-display);
   font-size: 2.8rem;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--amber-2);
   line-height: 1;
 }
@@ -515,17 +515,17 @@ nav.scrolled {
 .cc-bg-1 {
   background:
     radial-gradient(ellipse 60% 80% at 50% 80%, oklch(67.1% 0.140 73.8 / 0.25) 0%, transparent 70%),
-    linear-gradient(160deg, #1a1208 0%, #2a1800 100%);
+    linear-gradient(160deg, oklch(12.5% 0.025 70) 0%, oklch(16.5% 0.038 67) 100%);
 }
 .cc-bg-2 {
   background:
-    radial-gradient(ellipse 60% 80% at 50% 80%, rgba(123,45,0,0.35) 0%, transparent 70%),
-    linear-gradient(160deg, #100d06 0%, #1f1200 100%);
+    radial-gradient(ellipse 60% 80% at 50% 80%, oklch(40.5% 0.119 43.4 / 0.35) 0%, transparent 70%),
+    linear-gradient(160deg, oklch(9.5% 0.018 68) 0%, oklch(13.5% 0.032 66) 100%);
 }
 .cc-bg-3 {
   background:
-    radial-gradient(ellipse 60% 80% at 50% 80%, rgba(184,115,51,0.28) 0%, transparent 70%),
-    linear-gradient(160deg, #180e05 0%, #2a1a0a 100%);
+    radial-gradient(ellipse 60% 80% at 50% 80%, oklch(61.8% 0.117 60.4 / 0.28) 0%, transparent 70%),
+    linear-gradient(160deg, oklch(11.5% 0.025 68) 0%, oklch(17.2% 0.035 69) 100%);
 }
 
 .cocktail-card-overlay {
@@ -550,7 +550,7 @@ nav.scrolled {
 .cocktail-name {
   font-family: var(--serif-display);
   font-size: 1.9rem;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--white);
   line-height: 1.1;
   margin-bottom: 0.5rem;
@@ -578,7 +578,7 @@ nav.scrolled {
   position: absolute; top: 1.5rem; right: 1.5rem;
   font-family: var(--serif-display);
   font-size: 1.3rem;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--amber-2);
 }
 
@@ -622,7 +622,7 @@ nav.scrolled {
   position: relative; z-index: 1;
   font-family: var(--serif-display);
   font-size: 1.5rem;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--amber);
   transition: background 0.4s, border-color 0.4s;
 }
@@ -665,7 +665,7 @@ nav.scrolled {
 blockquote {
   font-family: var(--serif-display);
   font-size: clamp(1.6rem, 3vw, 2.5rem);
-  font-weight: 300;
+  font-weight: 400;
   font-style: italic;
   color: var(--parchment);
   max-width: 780px;
@@ -726,7 +726,7 @@ cite {
 .event-title {
   font-family: var(--serif-display);
   font-size: 1.7rem;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--white);
   margin-bottom: 0.8rem;
 }
@@ -783,11 +783,11 @@ cite {
   overflow: hidden;
   background: linear-gradient(
     135deg,
-    #1a1208 0%,
-    #2a1a08 25%,
-    #1f1505 50%,
-    #2a1f10 75%,
-    #1a1208 100%
+    oklch(12.5% 0.025 70) 0%,
+    oklch(17% 0.035 68) 25%,
+    oklch(14.5% 0.030 69) 50%,
+    oklch(18% 0.030 72) 75%,
+    oklch(12.5% 0.025 70) 100%
   );
   border-top: 1px solid oklch(67.1% 0.140 73.8 / 0.15);
   border-bottom: 1px solid oklch(67.1% 0.140 73.8 / 0.1);
@@ -797,7 +797,7 @@ cite {
   position: absolute; inset: 0;
   background:
     radial-gradient(ellipse 50% 80% at 20% 50%, oklch(67.1% 0.140 73.8 / 0.1) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 60% at 80% 50%, rgba(240, 168, 32, 0.06) 0%, transparent 50%);
+    radial-gradient(ellipse 40% 60% at 80% 50%, oklch(78.2% 0.157 76.3 / 0.06) 0%, transparent 50%);
   pointer-events: none;
 }
 #newsletter::after {
@@ -807,7 +807,7 @@ cite {
     90deg,
     transparent 0%,
     oklch(67.1% 0.140 73.8 / 0.04) 30%,
-    rgba(240, 168, 32, 0.06) 50%,
+    oklch(78.2% 0.157 76.3 / 0.06) 50%,
     oklch(67.1% 0.140 73.8 / 0.04) 70%,
     transparent 100%
   );
@@ -828,7 +828,7 @@ cite {
 .newsletter-text h3 {
   font-family: var(--serif-display);
   font-size: 2rem;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--parchment);
   line-height: 1.2;
 }
