@@ -493,12 +493,14 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
   <!-- Custom Cursor -->
   <div class="cursor" id="cursor-dot"><div class="cursor-dot"></div></div>
   <div class="cursor-ring" id="cursor-ring"></div>
 
   <!-- Navigation -->
-  <nav id="navbar">
+  <nav id="navbar" aria-label="Main navigation">
     <a href="index.html" class="nav-logo">ALC<span>_</span>Hemy</a>
     <ul class="nav-links">
       <li><a href="index.html#about">The House</a></li>
@@ -513,7 +515,7 @@
   </nav>
 
   <!-- Mobile Nav Overlay -->
-  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <nav class="mobile-nav" id="mobileNav" aria-hidden="true" aria-label="Mobile navigation">
     <a href="index.html#about" class="mobile-nav-link">The House</a>
     <div class="mobile-nav-divider"></div>
     <a href="menu.html"        class="mobile-nav-link">Menu</a>
@@ -522,8 +524,9 @@
     <div class="mobile-nav-divider"></div>
     <a href="events.html"      class="mobile-nav-link">Events</a>
     <a href="reservation.html" class="mobile-cta mobile-nav-link">Reserve a Table</a>
-  </div>
+  </nav>
 
+  <main id="main-content">
   <!-- Page Hero -->
   <section class="page-hero" style="min-height:65vh;">
     <div class="page-hero-bg craft-hero-bg"></div>
@@ -548,7 +551,7 @@
         </div>
         <div class="process-deep-text reveal">
           <p class="section-label">Step One</p>
-          <div class="process-deep-title"><em>Forage</em></div>
+          <h2 class="process-deep-title"><em>Forage</em></h2>
           <div class="divider" style="margin:1.5rem 0;max-width:200px;"><span class="divider-icon">&#10022;</span></div>
           <p>Every season, before the lab opens its doors, before the fire under the copper pot is lit, we go out into the land. Not because we must — we could order everything from a catalogue — but because <strong>the finest ingredients are not the most expensive ones. They are the most present ones.</strong></p>
           <p>Wild thyme gathered from a chalk hillside at dawn has a sharpness that no dried extract can reproduce. Elderflower picked at the moment the blossom opens carries a green, almost electric fragrance. Blackthorn sloe, harvested after the first frost, contains a tartness that the bottle version cannot manufacture.</p>
@@ -577,7 +580,7 @@
         </div>
         <div class="process-deep-text reveal">
           <p class="section-label">Step Two</p>
-          <div class="process-deep-title"><em>Ferment</em></div>
+          <h2 class="process-deep-title"><em>Ferment</em></h2>
           <div class="divider" style="margin:1.5rem 0;max-width:200px;"><span class="divider-icon">&#10022;</span></div>
           <p>Patience is not a virtue in fermentation — it is a technique. We work with <strong>open-crock, cold-temperature fermentation</strong> in sealed stone vessels that were used in this barn before we arrived. The cultures within them are older than our business.</p>
           <p>We ferment honey, fruit, grain, and occasionally things that have no category yet — a kind of experimental alchemy that sits at the edge of the process and sometimes produces failures so interesting that we study them before discarding them.</p>
@@ -606,7 +609,7 @@
         </div>
         <div class="process-deep-text reveal">
           <p class="section-label">Step Three</p>
-          <div class="process-deep-title"><em>Distil</em></div>
+          <h2 class="process-deep-title"><em>Distil</em></h2>
           <div class="divider" style="margin:1.5rem 0;max-width:200px;"><span class="divider-icon">&#10022;</span></div>
           <p>Our copper pot still has a name. We call her <strong>Patience</strong>, because that is what she demands and what she rewards. She is a hand-hammered 150-litre copper pot still acquired from a decommissioned Highland distillery in 2021, and she has been the heart of this operation ever since.</p>
           <p>Distillation is a conversation. The still speaks in temperature, in vapour pressure, in the subtle colour of the condensate. Our lead alchemist runs every distillation personally, taking cuts by nose and taste — not by instrument. The head runs fast and harsh and is discarded. The heart runs slow, clear, and honest. The tail we watch carefully for the moments when it still has something to say.</p>
@@ -635,7 +638,7 @@
         </div>
         <div class="process-deep-text reveal">
           <p class="section-label">Step Four</p>
-          <div class="process-deep-title"><em>Compose</em></div>
+          <h2 class="process-deep-title"><em>Compose</em></h2>
           <div class="divider" style="margin:1.5rem 0;max-width:200px;"><span class="divider-icon">&#10022;</span></div>
           <p>The final act. After forage, fermentation, and distillation have each played their part, composition is where we stop being craftspeople and begin being artists. <strong>A cocktail is a sentence. Every element earns its place — or it leaves.</strong></p>
           <p>We test every new composition a minimum of twelve times before it appears on the menu. We taste it at different temperatures, at different times of day, with different foods and moods in mind. We invite four regular guests to blind-taste at every stage of development — people who will tell us the honest truth because they have learned that we prefer it.</p>
@@ -853,11 +856,14 @@
         <h3>Seasonal menus, events &amp;<br>the odd arcane recipe.</h3>
       </div>
       <form class="newsletter-form" onsubmit="return false;">
-        <input type="email" placeholder="your@email.com" aria-label="Email address" />
-        <button type="submit">Subscribe</button>
+        <label for="newsletter-email" class="sr-only">Email address</label>
+        <input type="email" id="newsletter-email" placeholder="your@email.com" aria-label="Email address" />
+        <button type="submit" aria-label="Subscribe to ALC_Hemy newsletter">Subscribe</button>
       </form>
     </div>
   </section>
+
+  </main>
 
   <!-- Footer -->
   <footer>

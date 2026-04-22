@@ -425,11 +425,13 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
   <div class="cursor" id="cursor-dot"><div class="cursor-dot"></div></div>
   <div class="cursor-ring" id="cursor-ring"></div>
 
   <!-- Nav -->
-  <nav id="navbar">
+  <nav id="navbar" aria-label="Main navigation">
     <a href="index.html" class="nav-logo">ALC<span>_</span>Hemy</a>
     <ul class="nav-links">
       <li><a href="index.html#about">The House</a></li>
@@ -444,7 +446,7 @@
   </nav>
 
   <!-- Mobile Nav -->
-  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <nav class="mobile-nav" id="mobileNav" aria-hidden="true" aria-label="Mobile navigation">
     <a href="index.html#about" class="mobile-nav-link">The House</a>
     <div class="mobile-nav-divider"></div>
     <a href="menu.html"        class="mobile-nav-link">Menu</a>
@@ -453,8 +455,9 @@
     <div class="mobile-nav-divider"></div>
     <a href="events.html"      class="mobile-nav-link">Events</a>
     <a href="reservation.html" class="mobile-cta mobile-nav-link">Reserve a Table</a>
-  </div>
+  </nav>
 
+  <main id="main-content">
   <!-- Hero -->
   <div class="page-hero">
     <div class="page-hero-bg"></div>
@@ -684,6 +687,8 @@
       </div>
     </div>
   </section>
+
+  </main>
 
   <!-- Footer -->
   <footer>

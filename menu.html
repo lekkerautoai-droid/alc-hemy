@@ -171,7 +171,7 @@
       grid-template-columns: 1fr 1fr;
       gap: 3rem 4rem;
     }
-    .spirits-category h4 {
+    .spirits-category h3 {
       font-family: var(--serif-caps);
       font-size: 0.6rem;
       letter-spacing: 0.4em;
@@ -235,12 +235,14 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
   <!-- Custom Cursor -->
   <div class="cursor" id="cursor-dot"><div class="cursor-dot"></div></div>
   <div class="cursor-ring" id="cursor-ring"></div>
 
   <!-- Navigation -->
-  <nav id="navbar">
+  <nav id="navbar" aria-label="Main navigation">
     <a href="index.html" class="nav-logo">ALC<span>_</span>Hemy</a>
     <ul class="nav-links">
       <li><a href="index.html#about">The House</a></li>
@@ -255,7 +257,7 @@
   </nav>
 
   <!-- Mobile Nav Overlay -->
-  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <nav class="mobile-nav" id="mobileNav" aria-hidden="true" aria-label="Mobile navigation">
     <a href="index.html#about" class="mobile-nav-link">The House</a>
     <div class="mobile-nav-divider"></div>
     <a href="menu.html"        class="mobile-nav-link">Menu</a>
@@ -264,8 +266,9 @@
     <div class="mobile-nav-divider"></div>
     <a href="events.html"      class="mobile-nav-link">Events</a>
     <a href="reservation.html" class="mobile-cta mobile-nav-link">Reserve a Table</a>
-  </div>
+  </nav>
 
+  <main id="main-content">
   <!-- Page Hero -->
   <section class="page-hero">
     <div class="page-hero-bg menu-hero-bg"></div>
@@ -566,7 +569,7 @@
 
       <div class="spirits-grid reveal">
         <div class="spirits-category">
-          <h4>Scotch Whisky</h4>
+          <h3>Scotch Whisky</h3>
           <div class="spirit-row">
             <div>
               <span class="spirit-name">Glenfarclas 12 Year</span>
@@ -598,7 +601,7 @@
         </div>
 
         <div class="spirits-category">
-          <h4>Bourbon &amp; Rye</h4>
+          <h3>Bourbon &amp; Rye</h3>
           <div class="spirit-row">
             <div>
               <span class="spirit-name">Elijah Craig Small Batch</span>
@@ -630,7 +633,7 @@
         </div>
 
         <div class="spirits-category">
-          <h4>Mezcal &amp; Tequila</h4>
+          <h3>Mezcal &amp; Tequila</h3>
           <div class="spirit-row">
             <div>
               <span class="spirit-name">Ilegal Joven Mezcal</span>
@@ -655,7 +658,7 @@
         </div>
 
         <div class="spirits-category">
-          <h4>Wine by the Glass</h4>
+          <h3>Wine by the Glass</h3>
           <div class="spirit-row">
             <div>
               <span class="spirit-name">Muscadet Sèvre et Maine</span>
@@ -736,11 +739,14 @@
         <h3>Seasonal menus, events &amp;<br>the odd arcane recipe.</h3>
       </div>
       <form class="newsletter-form" onsubmit="return false;">
-        <input type="email" placeholder="your@email.com" aria-label="Email address" />
-        <button type="submit">Subscribe</button>
+        <label for="newsletter-email" class="sr-only">Email address</label>
+        <input type="email" id="newsletter-email" placeholder="your@email.com" aria-label="Email address" />
+        <button type="submit" aria-label="Subscribe to ALC_Hemy newsletter">Subscribe</button>
       </form>
     </div>
   </section>
+
+  </main>
 
   <!-- Footer -->
   <footer>
