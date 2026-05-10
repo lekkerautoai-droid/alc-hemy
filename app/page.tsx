@@ -1,13 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ShaderAnimation } from "@/components/ui/shader-animation";
+import { Hero } from "@/components/hero";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { prisma } from "@/lib/prisma";
 import { formatZAR, formatDuration } from "@/lib/utils";
-import { Heart, Clock, MapPin, Sparkles, ShieldCheck, MessageCircle, ArrowRight } from "lucide-react";
+import { Clock, Sparkles, MessageCircle, ArrowRight } from "lucide-react";
 
-const SITTER = process.env.NEXT_PUBLIC_SITTER_NAME || "Anabel";
 const AREA = process.env.NEXT_PUBLIC_SERVICE_AREA || "Cape Town CBD";
 
 export const dynamic = "force-dynamic";
@@ -20,54 +19,7 @@ export default async function HomePage() {
 
   return (
     <main className="min-h-screen">
-      {/* HERO */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 -z-0">
-          <ShaderAnimation />
-          <div className="absolute inset-0 bg-gradient-to-b from-cream-50/30 via-cream-50/40 to-cream-50" />
-        </div>
-        <div className="relative z-10 mx-auto flex min-h-[88vh] max-w-5xl flex-col items-center justify-center px-6 py-20 text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blush-200/60 bg-white/70 px-4 py-1.5 text-sm font-medium text-blush-500 backdrop-blur-md">
-            <span className="animate-paw-bounce inline-block">🐾</span>
-            Now booking in {AREA}
-          </div>
-          <h1 className="font-display text-5xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-7xl">
-            Cuddles, walks &{" "}
-            <span className="relative inline-block">
-              <span className="relative z-10 text-blush-500">tail wags</span>
-              <svg
-                className="absolute -bottom-2 left-0 right-0 z-0 h-3 w-full text-blush-200"
-                viewBox="0 0 100 12"
-                preserveAspectRatio="none"
-              >
-                <path d="M0,6 Q25,0 50,6 T100,6" stroke="currentColor" strokeWidth="3" fill="none" strokeLinecap="round" />
-              </svg>
-            </span>{" "}
-            on demand.
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl">
-            Hi, I'm <span className="font-semibold text-foreground">{SITTER}</span> — a local pet sitter & dog walker based in {AREA}.
-            Pick a time, tell me about your pet, and I'll be there.
-          </p>
-          <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row">
-            <Button asChild size="lg" className="group">
-              <Link href="/book">
-                Book a sitting <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="outline">
-              <Link href="#services">See services</Link>
-            </Button>
-          </div>
-
-          {/* Trust badges */}
-          <div className="mt-14 grid w-full max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3">
-            <TrustBadge icon={<MapPin className="h-4 w-4" />} label={`Local to ${AREA}`} />
-            <TrustBadge icon={<ShieldCheck className="h-4 w-4" />} label="Reliable & insured-vibes" />
-            <TrustBadge icon={<Heart className="h-4 w-4" />} label="Treats your pet like family" />
-          </div>
-        </div>
-      </section>
+      <Hero area={AREA} />
 
       {/* SERVICES */}
       <section id="services" className="py-24">
@@ -178,15 +130,6 @@ export default async function HomePage() {
         </div>
       </footer>
     </main>
-  );
-}
-
-function TrustBadge({ icon, label }: { icon: React.ReactNode; label: string }) {
-  return (
-    <div className="flex items-center justify-center gap-2 rounded-2xl border border-blush-100 bg-white/70 px-4 py-3 text-sm text-foreground/80 backdrop-blur-md">
-      <span className="text-blush-500">{icon}</span>
-      {label}
-    </div>
   );
 }
 
