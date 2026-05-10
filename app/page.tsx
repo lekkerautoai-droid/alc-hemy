@@ -1,9 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Hero } from "@/components/hero";
+import { GallerySection } from "@/components/gallery-section";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { prisma } from "@/lib/prisma";
+import { galleryPhotos } from "@/lib/gallery-photos";
 import { formatZAR, formatDuration } from "@/lib/utils";
 import { Clock, Sparkles, MessageCircle, ArrowRight } from "lucide-react";
 
@@ -85,6 +87,9 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* GALLERY — circular 3D gallery */}
+      <GallerySection items={galleryPhotos} />
 
       {/* TESTIMONIALS */}
       <section className="py-24">
