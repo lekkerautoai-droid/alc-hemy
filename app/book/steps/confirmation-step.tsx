@@ -1,9 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { format, parse, addMinutes } from "date-fns";
 import { CalendarPlus, MessageCircle, Home } from "lucide-react";
 import { formatZAR, formatDuration } from "@/lib/utils";
@@ -34,51 +32,67 @@ export function ConfirmationStep({ bookingRef, draft }: Props) {
 
   return (
     <div className="space-y-6 text-center">
-      <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-blush-200 to-lavender-200 text-5xl shadow-lg shadow-blush-100 animate-paw-bounce">
+      <div className="mx-auto flex h-24 w-24 animate-paw-bounce items-center justify-center rounded-full bg-gradient-to-br from-[#ff3d9a] via-[#ff7a5c] to-[#ffd166] text-5xl shadow-[0_20px_50px_-12px_rgba(255,61,154,0.55)]">
         🎉
       </div>
       <div>
-        <h2 className="font-display text-3xl font-semibold sm:text-4xl">You're all set!</h2>
-        <p className="mt-2 text-muted-foreground">
+        <h2 className="font-display text-3xl font-semibold text-white sm:text-4xl">You're all set!</h2>
+        <p className="mt-2 text-white/70">
           {SITTER} will WhatsApp you shortly to say hi & confirm details.
         </p>
       </div>
 
-      <Card>
-        <CardContent className="p-6 text-left">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Booking ref</span>
-            <Badge variant="lavender">{ref}</Badge>
-          </div>
-          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-            <Detail label="Service" value={`${draft.service.emoji} ${draft.service.name}`} />
-            <Detail label="When" value={`${format(dateObj, "EEE, d MMM")} · ${draft.startTime}`} />
-            <Detail label="Duration" value={formatDuration(draft.service.duration)} />
-            <Detail label="Price" value={formatZAR(draft.service.price)} />
-            <Detail label="Address" value={draft.address} className="sm:col-span-2" />
-            <Detail label="Pet" value={draft.petDetails} className="sm:col-span-2" />
-          </div>
+      <div className="rounded-3xl border border-white/10 bg-white/[0.06] p-6 text-left shadow-xl backdrop-blur-xl">
+        <div className="flex items-center justify-between">
+          <span className="text-xs font-semibold uppercase tracking-wider text-white/55">
+            Booking ref
+          </span>
+          <span className="rounded-full bg-gradient-to-r from-[#b388ff] to-[#4cc9f0] px-3 py-1 text-xs font-bold text-white">
+            {ref}
+          </span>
+        </div>
+        <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <Detail label="Service" value={`${draft.service.emoji} ${draft.service.name}`} />
+          <Detail label="When" value={`${format(dateObj, "EEE, d MMM")} · ${draft.startTime}`} />
+          <Detail label="Duration" value={formatDuration(draft.service.duration)} />
+          <Detail label="Price" value={formatZAR(draft.service.price)} />
+          <Detail label="Address" value={draft.address} className="sm:col-span-2" />
+          <Detail label="Pet" value={draft.petDetails} className="sm:col-span-2" />
+        </div>
 
-          <div className="mt-6 rounded-2xl bg-cream-100 p-4 text-sm text-amber-900">
-            💸 Payment is on the day, in cash or via EFT — no card details needed up front.
-          </div>
-        </CardContent>
-      </Card>
+        <div className="mt-6 rounded-2xl border border-[#ffd166]/30 bg-[#ffd166]/10 p-4 text-sm text-[#ffd166]">
+          💸 Payment is on the day, in cash or via EFT — no card details needed up front.
+        </div>
+      </div>
 
       <div className="flex flex-col items-center gap-2 sm:flex-row sm:justify-center">
         {wa && (
-          <Button asChild size="lg" variant="default">
+          <Button
+            asChild
+            size="lg"
+            className="bg-gradient-to-r from-[#06d6a0] to-[#4cc9f0] text-white shadow-[0_12px_32px_-8px_rgba(6,214,160,0.6)] hover:opacity-95"
+          >
             <a href={wa} target="_blank" rel="noopener noreferrer">
               <MessageCircle className="h-4 w-4" /> WhatsApp {SITTER}
             </a>
           </Button>
         )}
-        <Button asChild size="lg" variant="outline">
+        <Button
+          asChild
+          size="lg"
+          variant="outline"
+          className="border-white/30 bg-white/5 text-white backdrop-blur-md hover:bg-white/10"
+        >
           <a href={ics} download={`bells-and-paws-${ref}.ics`}>
             <CalendarPlus className="h-4 w-4" /> Add to calendar
           </a>
         </Button>
-        <Button asChild size="lg" variant="ghost">
+        <Button
+          asChild
+          size="lg"
+          variant="ghost"
+          className="text-white/75 hover:bg-white/10 hover:text-white"
+        >
           <Link href="/">
             <Home className="h-4 w-4" /> Done
           </Link>
@@ -91,8 +105,8 @@ export function ConfirmationStep({ bookingRef, draft }: Props) {
 function Detail({ label, value, className }: { label: string; value: string; className?: string }) {
   return (
     <div className={className}>
-      <div className="text-xs uppercase tracking-wider text-muted-foreground">{label}</div>
-      <div className="mt-0.5 font-medium text-foreground">{value}</div>
+      <div className="text-xs uppercase tracking-wider text-white/50">{label}</div>
+      <div className="mt-0.5 font-medium text-white">{value}</div>
     </div>
   );
 }
@@ -105,7 +119,13 @@ function buildWhatsAppLink(phone: string, ref: string, draft: Required<BookingDr
   return `https://wa.me/${number}?text=${encodeURIComponent(msg)}`;
 }
 
-function buildICSLink(opts: { title: string; description: string; location: string; start: Date; end: Date }) {
+function buildICSLink(opts: {
+  title: string;
+  description: string;
+  location: string;
+  start: Date;
+  end: Date;
+}) {
   const fmt = (d: Date) =>
     `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}00`;
   const ics = [

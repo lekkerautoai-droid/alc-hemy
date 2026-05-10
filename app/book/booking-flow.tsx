@@ -43,8 +43,10 @@ export function BookingFlow({ services }: { services: ServiceLite[] }) {
     <div className="space-y-8">
       <header className="text-center">
         <div className="mb-3 text-3xl">🐾</div>
-        <h1 className="font-display text-3xl font-semibold sm:text-4xl">Book a sitting</h1>
-        <p className="mt-2 text-muted-foreground">
+        <h1 className="font-display text-3xl font-semibold text-white sm:text-4xl">
+          Book a sitting
+        </h1>
+        <p className="mt-2 text-white/65">
           {step < 4 ? `Step ${step + 1} of ${steps.length - 1}` : "All done!"}
         </p>
       </header>
