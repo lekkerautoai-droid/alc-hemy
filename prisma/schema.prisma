@@ -37,6 +37,20 @@ model BlockedDate {
   @@unique([date])
 }
 
+model Photo {
+  id         String   @id @default(cuid())
+  url        String
+  blobPath   String?  // path in Vercel Blob, used for deletion
+  caption    String
+  subCaption String?
+  alt        String?
+  sortOrder  Int      @default(0)
+  active     Boolean  @default(true)
+  createdAt  DateTime @default(now())
+
+  @@index([active, sortOrder])
+}
+
 model Booking {
   id           String        @id @default(cuid())
   ref          String        @unique

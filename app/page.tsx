@@ -5,7 +5,7 @@ import { GallerySection } from "@/components/gallery-section";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { prisma } from "@/lib/prisma";
-import { galleryPhotos } from "@/lib/gallery-photos";
+import { getGalleryItems } from "@/lib/gallery";
 import { formatZAR, formatDuration } from "@/lib/utils";
 import { Clock, Sparkles, MessageCircle, ArrowRight } from "lucide-react";
 
@@ -14,10 +14,13 @@ const AREA = process.env.NEXT_PUBLIC_SERVICE_AREA || "Cape Town CBD";
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const services = await prisma.service.findMany({
-    where: { active: true },
-    orderBy: { sortOrder: "asc" },
-  });
+  const [services, galleryItems] = await Promise.all([
+    prisma.service.findMany({
+      where: { active: true },
+      orderBy: { sortOrder: "asc" },
+    }),
+    getGalleryItems(),
+  ]);
 
   return (
     <main className="min-h-screen">
@@ -89,7 +92,7 @@ export default async function HomePage() {
       </section>
 
       {/* GALLERY — circular 3D gallery */}
-      <GallerySection items={galleryPhotos} />
+      <GallerySection items={galleryItems} />
 
       {/* TESTIMONIALS */}
       <section className="py-24">

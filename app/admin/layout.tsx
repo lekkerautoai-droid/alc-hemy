@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { isAdminAuthed } from "@/lib/auth";
-import { LayoutDashboard, CalendarRange, CalendarDays, ListTodo, Sparkles, LogOut, Home } from "lucide-react";
+import { LayoutDashboard, CalendarRange, CalendarDays, ListTodo, Sparkles, LogOut, Home, Images } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -25,6 +25,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
               <NavLink href="/admin/availability" icon={<CalendarDays className="h-4 w-4" />} label="Availability" />
               <NavLink href="/admin/services" icon={<ListTodo className="h-4 w-4" />} label="Services" />
               <NavLink href="/admin/blocked" icon={<Sparkles className="h-4 w-4" />} label="Blocked dates" />
+              <NavLink href="/admin/gallery" icon={<Images className="h-4 w-4" />} label="Gallery" />
             </nav>
             <div className="border-t border-blush-100 p-3 lg:absolute lg:bottom-0 lg:w-64">
               <Link
