@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Service {
+  id          String    @id @default(cuid())
+  name        String
+  description String
+  duration    Int       // minutes
+  price       Int       // ZAR (whole rand)
+  emoji       String    @default("🐾")
+  active      Boolean   @default(true)
+  sortOrder   Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  bookings    Booking[]
+}
+
+model AvailabilityRule {
+  id           String  @id @default(cuid())
+  dayOfWeek    Int     // 0 = Sunday … 6 = Saturday
+  startTime    String  // "HH:mm"
+  endTime      String  // "HH:mm"
+  slotInterval Int     @default(30) // minutes
+  active       Boolean @default(true)
+}
+
+model BlockedDate {
+  id     String   @id @default(cuid())
+  date   DateTime
+  reason String?
+  @@unique([date])
+}
+
+model Booking {
+  id           String        @id @default(cuid())
+  ref          String        @unique
+  serviceId    String
+  service      Service       @relation(fields: [serviceId], references: [id])
+  date         DateTime      // date only (start of day, local TZ stored as UTC)
+  startTime    String        // "HH:mm"
+  status       String        @default("CONFIRMED") // CONFIRMED | COMPLETED | CANCELLED | NO_SHOW
+  clientName   String
+  clientPhone  String
+  clientEmail  String
+  address      String
+  petDetails   String        // pet name(s), type, breed
+  notes        String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  @@index([date])
+  @@index([clientEmail])
+}
