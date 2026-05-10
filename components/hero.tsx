@@ -47,26 +47,30 @@ export function Hero({ area }: HeroProps) {
           </span>
         </h1>
 
-        <p className="mt-8 max-w-xl text-base text-white/75 sm:text-lg">
-          Cuddles, walks & tail wags — on demand. Friendly pet sitting in{" "}
-          <span className="font-semibold text-white">{area}</span>.
-        </p>
+        <div className="relative mt-8 flex flex-col items-center">
+          {/* dark scrim so subtitle + CTAs read clearly through the particles */}
+          <div className="pointer-events-none absolute inset-x-1/2 -inset-y-3 -translate-x-1/2 rounded-3xl bg-[radial-gradient(ellipse_at_center,rgba(10,7,23,0.85)_30%,rgba(10,7,23,0.55)_60%,transparent_100%)] blur-md sm:-inset-x-12" aria-hidden />
+          <p className="relative max-w-xl text-base font-medium text-white sm:text-lg [text-shadow:0_1px_8px_rgba(0,0,0,0.65)]">
+            Cuddles, walks &amp; tail wags — on demand. Friendly pet sitting in{" "}
+            <span className="font-semibold text-white">{area}</span>.
+          </p>
 
-        <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row">
-          <Button asChild size="lg" className="group bg-white text-[#0a0717] shadow-[0_0_32px_rgba(255,255,255,0.35)] hover:bg-white/90">
-            <Link href="/book">
-              Book a sitting{" "}
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </Button>
-          <Button
-            asChild
-            size="lg"
-            variant="outline"
-            className="border-white/30 bg-white/5 text-white backdrop-blur-md hover:bg-white/10"
-          >
-            <Link href="#services">See services</Link>
-          </Button>
+          <div className="relative mt-8 flex flex-col items-center gap-3 sm:flex-row">
+            <Button asChild size="lg" className="group bg-white text-[#0a0717] shadow-[0_0_32px_rgba(255,255,255,0.45)] hover:bg-white/90">
+              <Link href="/book">
+                Book a sitting{" "}
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-white/40 bg-black/30 text-white backdrop-blur-md hover:bg-black/40"
+            >
+              <Link href="#services">See services</Link>
+            </Button>
+          </div>
         </div>
 
         <div className="mt-16 grid w-full max-w-3xl grid-cols-1 gap-3 sm:grid-cols-3">
