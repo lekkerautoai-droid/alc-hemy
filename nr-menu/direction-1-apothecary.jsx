@@ -101,15 +101,15 @@ function D1Cover({ setScreen }) {
         color: D1.cream2, textTransform: 'uppercase',
       }}>
         <span>NR · 002</span>
-        <span>EST. 2026</span>
+        <span>EST. {NR.brand.est || 2026}</span>
       </div>
 
       <div style={{ padding: '60px 28px 0' }}>
-        <img src="assets/logo.jpeg" alt="NR Botanicals"
+        <img src={NR.brand.logo || 'assets/logo.jpeg'} alt={NR.brand.name || 'NR Botanicals'}
           style={{
             width: '100%', borderRadius: 2, display: 'block',
-            mixBlendMode: 'screen', opacity: 0.95,
-            filter: 'contrast(1.05) brightness(1.1)',
+            mixBlendMode: NR.brand.logoTransparent ? 'normal' : 'screen', opacity: 0.95,
+            filter: NR.brand.logoTransparent ? 'none' : 'contrast(1.05) brightness(1.1)',
           }}/>
       </div>
 
@@ -117,7 +117,7 @@ function D1Cover({ setScreen }) {
         <div style={{
           fontFamily: D1.sans, fontSize: 9, letterSpacing: '0.4em',
           color: D1.gold, textTransform: 'uppercase',
-        }}>Pure · Natural · Botanics</div>
+        }}>{NR.brand.tagline || 'Pure · Natural · Botanics'}</div>
       </div>
 
       <div style={{ padding: '36px 28px 0' }}>

@@ -27,16 +27,26 @@
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
 
-<script src="data.js"></script>
 <script type="text/babel" src="direction-1-apothecary.jsx"></script>
 
 <script>
-  // Babel transforms text/babel scripts asynchronously after load, so poll
-  // until direction-1-apothecary.jsx has registered window.D1Menu, then mount.
-  (function mount() {
-    if (!window.D1Menu) { return requestAnimationFrame(mount); }
-    var root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(React.createElement(window.D1Menu));
+  // Fetch live menu data from the API, then wait for Babel to register window.D1Menu
+  // (transforms run asynchronously after load) and mount the React app.
+  (async function () {
+    try {
+      const res = await fetch('/api/menu', { cache: 'no-store' });
+      window.NR = await res.json();
+    } catch (e) {
+      console.error('failed to load menu data', e);
+      document.getElementById('root').innerHTML =
+        '<div style="padding:40px;font-family:serif;color:#e8e2d0;text-align:center">Menu temporarily unavailable. Please refresh.</div>';
+      return;
+    }
+    (function mount() {
+      if (!window.D1Menu) { return requestAnimationFrame(mount); }
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(React.createElement(window.D1Menu));
+    })();
   })();
 </script>
 </body>
